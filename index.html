@@ -1,0 +1,1779 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover">
+<title>شاليهات الثانية | حجز شاليهات فاخرة</title>
+<meta name="description" content="شاليهات الثانية — أربع وحدات فاخرة، خصوصية تامة، حجز مباشر عبر واتساب">
+
+<!-- بطاقة معاينة عند مشاركة الرابط بواتساب/تويتر/إلخ (Open Graph) —
+     مهم: og:image لازم يكون رابط صورة حقيقية مرفوعة على الإنترنت (مو صورة داخل الملف نفسه)
+     بعد رفع الملف على GitHub Pages، ارفع صورة غلاف (شعار أو صورة شاليه) بنفس المستودع
+     وحط رابطها هنا بدل القيمة الفاضية -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="شاليهات الثانية | حجز شاليهات فاخرة">
+<meta property="og:description" content="أربع وحدات فاخرة، خصوصية تامة، حجز مباشر عبر واتساب">
+<meta property="og:image" content="">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     ملاحظة للتعديل السريع:
+     - عدّل CONFIG في نهاية الملف (داخل وسم <script>) لتغيير:
+       رقم واتساب، رابط الموقع على خرائط قوقل، ونص العنوان.
+     - كل شاليه له بطاقة مستقلة بقسم "الشاليهات" بالأسفل بوسم HTML
+       يحمل تعليق باسمه — عدّل الاسم/السعر/المميزات مباشرة هناك.
+     - لإضافة صورة حقيقية بدل المربع الرمادي: استبدل العنصر
+       <div class="ph-box">...</div> بـ <img src="رابط_الصورة.jpg" ...>
+     - لإضافة فيديو حقيقي: استبدل المشغّل الوهمي بوسم
+       <video controls src="رابط_الفيديو.mp4" poster="صورة_غلاف.jpg"></video>
+     ========================================================= */
+
+  :root{
+    --ink:#1e1830;
+    --ink-soft:#564f6a;
+    --cream:#faf8fd;
+    --cream-2:#f1eaf9;
+    --card:#ffffff;
+    --surface-dark:#1e1830; /* سطح غامق ثابت (لا يتغير بين الوضعين) للأقسام الغامقة دائماً */
+    --gold:#7c3aed; /* لون الهوية الأساسي (بنفسجي) */
+    --gold-2:#a78bfa; /* درجة بنفسجية أفتح للتدرجات والتفاصيل */
+    --line:#e3daf2;
+    --whatsapp:#25D366;
+    --c1:#e0483e; /* شاليه 1 - أحمر */
+    --c2:#8b5cf6; /* شاليه 2 - بنفسجي */
+    --c3:#f0872f; /* شاليه 3 - برتقالي */
+    --c4:#149e93; /* شاليه 4 - فيروزي */
+    --radius:18px;
+    --shadow:0 10px 30px -12px rgba(30,24,48,.18);
+    --shadow-lg:0 24px 60px -20px rgba(30,24,48,.28);
+  }
+
+  /* ===== الوضع الليلي (Dark Mode) — يُفعَّل بإضافة data-theme="dark" على <html> ===== */
+  :root[data-theme="dark"]{
+    --ink:#f2ecfb;
+    --ink-soft:#b9adcf;
+    --cream:#17121f;
+    --cream-2:#1f1a2e;
+    --card:#241f38;
+    --line:#372f4d;
+    --shadow:0 10px 30px -12px rgba(0,0,0,.45);
+    --shadow-lg:0 24px 60px -20px rgba(0,0,0,.55);
+  }
+  :root[data-theme="dark"] header.scrolled{
+    background:rgba(23,18,31,.9); box-shadow:0 2px 20px rgba(0,0,0,.4);
+  }
+  :root[data-theme="dark"] header.scrolled .burger{ background:rgba(255,255,255,.08); }
+  :root[data-theme="dark"] header.scrolled .lang-btn{ border-color:rgba(255,255,255,.25); background:rgba(255,255,255,.06); }
+  body{ transition:background-color .3s ease, color .3s ease; }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Cairo',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.75;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{text-decoration:none; color:inherit;}
+  ul{list-style:none;}
+  section{padding:88px 20px;}
+  .wrap{max-width:1140px; margin:0 auto;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:13px; font-weight:700; letter-spacing:.5px;
+    color:var(--gold); background:rgba(124,58,237,.1);
+    padding:7px 16px; border-radius:999px; margin-bottom:16px;
+  }
+  .eyebrow::before{content:"◆"; font-size:9px;}
+  h1,h2,h3{font-weight:800; line-height:1.3;}
+  .sec-title{font-size:clamp(26px,4vw,38px); margin-bottom:14px;}
+  .sec-sub{color:var(--ink-soft); max-width:620px; font-size:16px;}
+  .sec-head{text-align:center; margin-bottom:52px;}
+  .sec-head .sec-sub{margin:0 auto;}
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    padding:15px 28px; border-radius:12px; font-weight:700; font-size:15px;
+    border:2px solid transparent; cursor:pointer; transition:.25s ease;
+    white-space:nowrap; background:transparent; appearance:none; -webkit-appearance:none;
+    font-family:inherit;
+  }
+  .btn-gold{ background:linear-gradient(135deg,var(--gold-2),var(--gold)); color:#fff; box-shadow:0 12px 24px -10px rgba(124,58,237,.55);}
+  .btn-gold:hover{ transform:translateY(-2px); box-shadow:0 16px 30px -10px rgba(124,58,237,.65);}
+  .btn-outline{ border-color:rgba(255,255,255,.55); color:#fff;}
+  .btn-outline:hover{ background:rgba(255,255,255,.12);}
+  .btn-whatsapp{ background:var(--whatsapp); color:#fff; box-shadow:0 12px 24px -10px rgba(37,211,102,.55);}
+  .btn-whatsapp:hover{ transform:translateY(-2px);}
+  .btn-dark{ background:var(--surface-dark); color:#fff; }
+  .btn-dark:hover{ background:#000; }
+  .btn svg{ width:18px; height:18px; flex-shrink:0; }
+
+  /* ===== Header ===== */
+  header{
+    position:fixed; inset-inline:0; top:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px; transition:.3s;
+    background:transparent;
+  }
+  header.scrolled{
+    background:rgba(250,248,253,.92); backdrop-filter:blur(10px);
+    box-shadow:0 2px 20px rgba(0,0,0,.06); padding:12px 28px;
+  }
+  .logo{ display:flex; align-items:center; gap:10px; font-weight:800; font-size:20px; color:#fff; transition:.3s;}
+  header.scrolled .logo{ color:var(--ink); }
+  .logo img.mark, .foot-logo img.mark{
+    width:38px; height:38px; border-radius:50%;
+    object-fit:cover; flex-shrink:0;
+  }
+  nav.main-nav{ display:flex; align-items:center; gap:34px; }
+  nav.main-nav a{ color:#fff; font-weight:600; font-size:15px; opacity:.92; transition:.2s; position:relative;}
+  header.scrolled nav.main-nav a{ color:var(--ink); }
+  nav.main-nav a:hover{ opacity:1; color:var(--gold-2); }
+  .nav-actions{ display:flex; align-items:center; gap:14px; }
+  .header-quick-actions{ display:flex; align-items:center; gap:10px; }
+  .nav-actions .btn{ padding:11px 20px; font-size:14px; }
+  .burger{ display:none; width:42px; height:42px; border-radius:10px; border:none; background:rgba(255,255,255,.15); color:#fff; font-size:20px; cursor:pointer;}
+  header.scrolled .burger{ background:rgba(30,24,48,.08); color:var(--ink); }
+
+  .lang-btn{
+    display:flex; align-items:center; justify-content:center;
+    min-width:46px; height:38px; padding:0 14px; border-radius:999px;
+    border:1.5px solid rgba(255,255,255,.55); background:rgba(255,255,255,.08);
+    color:#fff; font-weight:700; font-size:13px; letter-spacing:.3px;
+    cursor:pointer; transition:.25s ease; font-family:'Cairo',sans-serif;
+  }
+  header.scrolled .lang-btn{ border-color:rgba(30,24,48,.25); background:rgba(30,24,48,.06); color:var(--ink); }
+  .lang-btn:hover{ background:var(--gold); border-color:var(--gold); color:#fff; }
+  .mobile-menu .lang-btn{
+    border:1.5px solid rgba(255,255,255,.4); background:rgba(255,255,255,.08); color:#fff;
+    padding:10px 24px; border-radius:999px; font-size:15px; margin-top:6px;
+  }
+  .theme-btn{ font-size:17px; }
+
+  .mobile-menu{
+    position:fixed; inset:0; background:var(--surface-dark); z-index:150;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:28px;
+    transform:translateY(-100%); transition:.35s ease; opacity:0;
+  }
+  .mobile-menu.open{ transform:translateY(0); opacity:1; }
+  .mobile-menu a{ color:#fff; font-size:22px; font-weight:700; }
+  .mobile-menu .close-x{ position:absolute; top:22px; left:24px; font-size:28px; color:#fff; background:none; border:none; cursor:pointer;}
+
+  /* ===== Hero ===== */
+  .hero{
+    min-height:100vh; position:relative; display:flex; align-items:center;
+    padding:140px 20px 100px;
+    background:#1e1830;
+    overflow:hidden;
+  }
+  .hero-slides{ position:absolute; inset:0; z-index:0; overflow:hidden; }
+  .hero-slide{
+    position:absolute; inset:0; background-size:cover; background-position:center;
+    opacity:0; transition:opacity 1.8s ease; will-change:opacity, transform;
+  }
+  .hero-slide.active{ opacity:1; animation:kenburns 7s ease-out forwards; }
+  .hero-slide.placeholder{
+    display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px;
+    color:rgba(255,255,255,.4); font-weight:700; font-size:14.5px; text-align:center; padding:20px;
+  }
+  .hero-slide.placeholder svg{ width:34px; height:34px; opacity:.6; }
+  .hero-slide.grad-1{ background:radial-gradient(circle at 25% 30%,#3d2f5c,#1e1830 70%); }
+  .hero-slide.grad-2{ background:radial-gradient(circle at 75% 70%,#2f2b52,#161228 70%); }
+  .hero-slide.grad-3{ background:radial-gradient(circle at 50% 20%,#3a2c58,#1c1730 70%); }
+  @keyframes kenburns{ from{ transform:scale(1); } to{ transform:scale(1.09); } }
+  @media (prefers-reduced-motion:reduce){ .hero-slide.active{ animation:none; } }
+  .hero-overlay{
+    position:absolute; inset:0; z-index:1;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(167,139,250,.22), transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(124,58,237,.15), transparent 50%),
+      linear-gradient(180deg, rgba(22,17,34,.55) 0%, rgba(22,17,34,.72) 55%, rgba(22,17,34,.9) 100%);
+  }
+  .hero-inner{ position:relative; z-index:2; max-width:720px; }
+  .hero-dots{ position:absolute; z-index:3; bottom:26px; inset-inline-start:20px; display:flex; gap:8px; }
+  .hero-dots button{
+    width:9px; height:9px; border-radius:50%; border:1.5px solid rgba(255,255,255,.6);
+    background:transparent; padding:0; cursor:pointer; transition:.25s;
+  }
+  .hero-dots button.active{ background:var(--gold-2); border-color:var(--gold-2); width:22px; border-radius:5px; }
+  .hero-caption{
+    margin-bottom:22px; min-height:76px;
+    opacity:0; transform:translateY(10px); transition:opacity .6s ease, transform .6s ease;
+  }
+  .hero-caption.show{ opacity:1; transform:none; }
+  .hero-caption .cap-title{
+    display:block; color:#fff; font-weight:800; line-height:1.05;
+    font-size:clamp(30px,5vw,50px); text-shadow:0 4px 24px rgba(0,0,0,.35);
+  }
+  .hero-caption .cap-sub{
+    display:flex; align-items:center; gap:10px; margin-top:8px;
+    color:#dcd0fb; font-weight:600; font-size:clamp(14px,1.6vw,17px);
+  }
+  .hero-caption .cap-sub::before{ content:""; width:26px; height:1.5px; background:var(--gold-2); display:inline-block; }
+  @media (max-width:920px){
+    .hero-caption{ margin-bottom:16px; min-height:64px; }
+  }
+  .hero-inner .eyebrow{ background:rgba(255,255,255,.12); color:#dcd0fb; }
+  .hero h1{ color:#fff; font-size:clamp(36px,6vw,58px); margin-bottom:20px; }
+  .hero h1 em{ font-style:normal; color:var(--gold-2); }
+  .hero p.lead{ color:#e5e0f5; font-size:18px; max-width:560px; margin-bottom:36px; }
+  .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:56px; }
+  .hero-stats{ display:flex; gap:0; flex-wrap:wrap; border-top:1px solid rgba(255,255,255,.15); padding-top:28px; }
+  .hero-stats div{ padding-inline-end:40px; margin-inline-end:40px; border-inline-end:1px solid rgba(255,255,255,.15); }
+  .hero-stats div:last-child{ border-inline-end:none; }
+  .hero-stats b{ display:block; font-size:26px; color:#fff; }
+  .hero-stats span{ font-size:13px; color:#b9adcf; }
+
+  /* ===== Intro ===== */
+  .intro{ background:var(--cream); }
+  .intro-grid{ display:grid; grid-template-columns:1.1fr .9fr; gap:56px; align-items:center; }
+  .intro-photos{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .intro-photos .ph-box:first-child{ grid-column:1/3; aspect-ratio:16/9; }
+  .feature-mini{ display:flex; gap:14px; margin-top:28px; flex-wrap:wrap; }
+  .feature-mini span{
+    display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600;
+    background:var(--cream-2); padding:9px 16px; border-radius:999px; color:var(--ink-soft);
+  }
+
+  /* Placeholder photo/video boxes */
+  .ph-box{
+    background:linear-gradient(135deg,#ece3f9,#ddc9f5);
+    border:1.5px dashed #c3a8e8; border-radius:14px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    color:#7c5da8; gap:8px; min-height:120px; text-align:center; padding:14px;
+  }
+  .ph-box svg{ width:30px; height:30px; opacity:.75; }
+  .ph-box small{ font-size:12px; font-weight:700; }
+
+  /* ===== Why-us (تجربة الضيافة) ===== */
+  .why-sec{ background:var(--surface-dark); }
+  .why-sec .eyebrow{ background:rgba(255,255,255,.1); color:#dcd0fb; }
+  .why-sec .sec-title{ color:#fff; }
+  .why-sec .sec-sub{ color:#b9adcf; }
+  .why-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
+  .why-card{
+    border:1px solid rgba(255,255,255,.12); border-radius:16px; padding:32px 26px;
+    display:flex; flex-direction:column; gap:16px; transition:.3s;
+  }
+  .why-card:hover{ border-color:rgba(167,139,250,.5); background:rgba(255,255,255,.03); }
+  .why-ico{
+    width:58px; height:58px; border-radius:50%; border:1.5px solid var(--gold-2);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .why-ico svg{ width:24px; height:24px; color:var(--gold-2); }
+  .why-card h4{ color:#fff; font-size:18px; }
+  .why-card p{ color:#b3a8c9; font-size:14.5px; }
+
+  /* ===== Chalets ===== */
+  .chalets{ background:var(--cream-2); }
+  .chalet-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:28px; }
+  .chalet-card{
+    background:var(--card); border-radius:var(--radius); overflow:hidden;
+    box-shadow:var(--shadow); border-top:5px solid var(--accent,var(--gold));
+    display:flex; flex-direction:column;
+    opacity:0; transform:translateY(30px); transition:.6s ease;
+  }
+  .chalet-card.visible{ opacity:1; transform:none; }
+  .chalet-gallery, .chalet-modal-gallery{ display:flex; flex-direction:column; gap:8px; padding:14px 14px 0; }
+  .ph-box.main{ min-height:190px; }
+  .gallery-main{ width:100%; aspect-ratio:16/10; border-radius:12px; overflow:hidden; background:var(--cream-2); }
+  .gallery-main img{ width:100%; height:100%; object-fit:cover; display:block; cursor:zoom-in; }
+  .gallery-thumbs{ display:grid; grid-template-columns:repeat(4,1fr); gap:6px; }
+  .gallery-thumbs img{ width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:8px; display:block; cursor:zoom-in; }
+  .gallery-thumbs .ph-box{ min-height:auto; aspect-ratio:1/1; padding:8px; }
+  @media (max-width:520px){ .gallery-thumbs{ grid-template-columns:repeat(3,1fr); } }
+
+  .gallery-thumb-video{
+    position:relative; width:100%; aspect-ratio:1/1; border-radius:8px; overflow:hidden;
+    background:linear-gradient(135deg,#241f38,#3a2f5c); cursor:pointer;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+  }
+  .gallery-thumb-video .video-thumb-play{
+    width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,.16);
+    border:1.5px solid rgba(255,255,255,.55); display:flex; align-items:center; justify-content:center;
+    transition:.2s;
+  }
+  .gallery-thumb-video:hover .video-thumb-play{ background:var(--gold); border-color:var(--gold); }
+  .gallery-thumb-video .video-thumb-play svg{ width:16px; height:16px; color:#fff; margin-inline-start:2px; }
+  .gallery-thumb-video small{ color:#d9cdf0; font-weight:700; font-size:10.5px; text-align:center; padding:0 4px; }
+
+  .video-lightbox{
+    position:fixed; inset:0; z-index:250; background:rgba(10,8,16,.92); display:none;
+    align-items:center; justify-content:center; padding:24px; direction:ltr;
+  }
+  .video-lightbox.open{ display:flex; }
+  .video-lightbox-frame{ position:relative; width:min(920px,92vw); aspect-ratio:16/9; background:#000; border-radius:10px; overflow:hidden; }
+  .video-lightbox-frame.vertical{ width:min(400px,88vw); aspect-ratio:9/16; max-height:88vh; }
+  .video-lightbox-frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+  .video-lightbox .lb-close{
+    position:absolute; top:18px; right:18px; width:42px; height:42px; border-radius:50%;
+    border:none; background:rgba(255,255,255,.15); color:#fff; font-size:20px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; z-index:2;
+  }
+  .video-lightbox .lb-close:hover{ background:var(--gold); }
+  .img-lightbox{ position:fixed; inset:0; z-index:250; background:rgba(10,8,16,.92); display:none; align-items:center; justify-content:center; padding:24px; direction:ltr; }
+  .img-lightbox.open{ display:flex; }
+  .img-lightbox img{ max-width:100%; max-height:100%; border-radius:10px; box-shadow:0 20px 60px rgba(0,0,0,.5); }
+  .img-lightbox .lb-close{ position:absolute; top:18px; right:18px; width:40px; height:40px; border-radius:50%; border:none; background:rgba(255,255,255,.15); color:#fff; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+  .img-lightbox .lb-close:hover{ background:rgba(255,255,255,.3); }
+  .img-lightbox .lb-nav{ position:absolute; top:50%; transform:translateY(-50%); width:48px; height:48px; border-radius:50%; border:none; background:rgba(255,255,255,.15); color:#fff; font-size:26px; cursor:pointer; display:flex; align-items:center; justify-content:center; line-height:1; }
+  .img-lightbox .lb-nav:hover{ background:rgba(255,255,255,.3); }
+  .img-lightbox .lb-prev{ left:18px; }
+  .img-lightbox .lb-next{ right:18px; }
+  .img-lightbox .lb-counter{ position:absolute; bottom:18px; left:50%; transform:translateX(-50%); color:#fff; font-size:14px; background:rgba(255,255,255,.15); padding:4px 12px; border-radius:20px; }
+  @media (max-width:520px){ .img-lightbox .lb-nav{ width:40px; height:40px; font-size:22px; } }
+  .chalet-body{ padding:22px 24px 26px; display:flex; flex-direction:column; gap:14px; flex:1; }
+  .chalet-head{ display:flex; align-items:center; justify-content:space-between; gap:10px;}
+  .chalet-head h3{ font-size:21px; display:flex; align-items:center; gap:10px; }
+  .dot{ width:12px; height:12px; border-radius:50%; background:var(--accent); flex-shrink:0; }
+  .cap-badge{ font-size:12.5px; font-weight:700; color:var(--ink-soft); background:var(--cream-2); padding:5px 12px; border-radius:999px; white-space:nowrap;}
+  .feat-list{ display:flex; flex-wrap:wrap; gap:8px; }
+  .feat-list span{
+    display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600;
+    color:var(--ink-soft); background:var(--cream); border:1px solid var(--line);
+    padding:6px 11px; border-radius:999px;
+  }
+  .feat-list svg{ width:14px; height:14px; color:var(--accent); }
+  .chalet-foot{ margin-top:auto; display:flex; align-items:center; justify-content:center; gap:14px; padding-top:14px; border-top:1px dashed var(--line); }
+  .chalet-foot .btn{ flex:1; justify-content:center; }
+  .price b{ font-size:24px; color:var(--ink); }
+  .price small{ display:block; font-size:12.5px; color:var(--ink-soft); }
+  .chalet-foot .btn{ padding:12px 20px; font-size:14px; }
+  .btn-outline.on-light{ color:var(--ink); border-color:var(--line); }
+  .btn-outline.on-light:hover{ background:var(--cream-2); }
+
+  /* ===== آراء العملاء ===== */
+  .testimonials{ background:var(--cream); }
+  .testi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .google-rating-badge{ display:inline-flex; align-items:center; gap:8px; margin-top:14px; padding:8px 16px; border-radius:999px; background:var(--card); border:1px solid var(--line); font-size:13.5px; font-weight:700; color:var(--ink); text-decoration:none; transition:box-shadow .2s ease; }
+  .google-rating-badge:hover{ box-shadow:var(--shadow); }
+  .google-rating-badge span:last-child{ color:var(--ink-soft); font-weight:500; }
+  .testi-card{
+    background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow);
+    padding:28px 26px; display:flex; flex-direction:column; gap:14px;
+  }
+  .testi-stars{ color:var(--gold); font-size:15px; letter-spacing:2px; }
+  .testi-text{ color:var(--ink-soft); font-size:14.5px; line-height:1.85; flex:1; }
+  .testi-name{ font-weight:700; font-size:14.5px; display:flex; align-items:center; gap:10px; }
+  .testi-avatar{
+    width:38px; height:38px; border-radius:50%; background:var(--cream-2);
+    display:flex; align-items:center; justify-content:center; font-weight:800;
+    color:var(--gold); flex-shrink:0; font-size:14px;
+  }
+
+  /* ===== الأسئلة الشائعة ===== */
+  .faq{ background:var(--cream-2); }
+  .faq-list{ max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:12px; }
+  .faq-item{ background:var(--card); border-radius:14px; padding:4px 22px; box-shadow:var(--shadow); }
+  .faq-item summary{
+    cursor:pointer; padding:18px 0; font-weight:700; font-size:15.5px; list-style:none;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+  }
+  .faq-item summary::-webkit-details-marker{ display:none; }
+  .faq-item summary::after{ content:"+"; font-size:22px; color:var(--gold); transition:.25s; flex-shrink:0; }
+  .faq-item[open] summary::after{ transform:rotate(45deg); }
+  .faq-item p{ color:var(--ink-soft); font-size:14.5px; line-height:1.85; padding-bottom:18px; margin-top:-6px; }
+
+  /* ===== نافذة تفاصيل الشاليه ===== */
+  .chalet-modal-overlay{
+    position:fixed; inset:0; background:rgba(10,6,20,.65); z-index:200;
+    display:flex; align-items:center; justify-content:center; padding:20px;
+    opacity:0; pointer-events:none; transition:.25s ease;
+  }
+  .chalet-modal-overlay.open{ opacity:1; pointer-events:auto; }
+  .chalet-modal{
+    background:var(--card); border-radius:var(--radius); max-width:640px; width:100%;
+    max-height:88vh; overflow-y:auto; position:relative; box-shadow:var(--shadow-lg);
+    transform:translateY(24px); transition:.25s ease;
+  }
+  .chalet-modal-overlay.open .chalet-modal{ transform:translateY(0); }
+  .chalet-modal-close{
+    position:absolute; top:14px; inset-inline-end:14px; z-index:2;
+    width:36px; height:36px; border-radius:50%; border:none; background:rgba(0,0,0,.55);
+    color:#fff; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  }
+  .chalet-modal-body{ padding:20px 24px 26px; display:flex; flex-direction:column; gap:14px; }
+  .modal-sub-title{ font-size:15.5px; font-weight:800; margin-top:4px; border-top:1px dashed var(--line); padding-top:16px; }
+  .price-table{ display:flex; flex-direction:column; gap:2px; }
+  .price-row{ display:flex; align-items:center; justify-content:space-between; padding:9px 0; border-bottom:1px dashed var(--line); font-size:14px; }
+  .price-row:last-child{ border-bottom:none; }
+  .price-row span{ color:var(--ink-soft); }
+  .price-row b{ color:var(--ink); font-size:15px; }
+  .terms-list{ display:flex; flex-direction:column; gap:10px; padding-inline-start:0; margin:0; }
+  .terms-list li{ position:relative; color:var(--ink-soft); font-size:13.5px; line-height:1.8; padding-inline-start:18px; }
+  .terms-list li::before{ content:""; position:absolute; inset-inline-start:0; top:0.65em; width:6px; height:6px; border-radius:50%; background:var(--accent, var(--ink)); }
+  .modal-specs-area{ font-size:13.5px; font-weight:700; color:var(--ink); background:var(--cream-2); border:1px solid var(--line); border-radius:10px; padding:9px 14px; margin-top:2px; }
+  .modal-specs-groups{ display:flex; flex-direction:column; gap:14px; margin-top:12px; }
+  .modal-specs-group h5{ display:flex; align-items:center; gap:6px; font-size:14px; font-weight:800; color:var(--ink); margin:0 0 8px; }
+  .modal-specs-group ul{ display:flex; flex-direction:column; gap:8px; padding-inline-start:0; margin:0; }
+  .modal-specs-group ul li{ position:relative; color:var(--ink-soft); font-size:13.5px; line-height:1.75; padding-inline-start:18px; }
+  .modal-specs-group ul li::before{ content:""; position:absolute; inset-inline-start:0; top:0.6em; width:6px; height:6px; border-radius:50%; background:var(--accent, var(--ink)); }
+  body.modal-open{ overflow:hidden; }
+
+  /* ===== Video ===== */
+  .video-sec{ background:var(--surface-dark); }
+  .video-sec .eyebrow{ background:rgba(255,255,255,.1); color:#dcd0fb; }
+  .video-sec .sec-title, .video-sec .sec-sub{ color:#fff; }
+  .video-sec .sec-sub{ color:#b9adcf; }
+  .video-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
+  .video-card{
+    position:relative; border-radius:16px; overflow:hidden; aspect-ratio:16/9;
+    background:linear-gradient(135deg,#241f38,#3a2f5c10); cursor:pointer;
+    border:1.5px dashed rgba(255,255,255,.25);
+    display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px;
+  }
+  .video-card small{ color:#b9adcf; font-weight:700; font-size:12.5px; }
+  .play-btn{
+    width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,.14);
+    border:2px solid rgba(255,255,255,.5); display:flex; align-items:center; justify-content:center;
+    transition:.25s;
+  }
+  .video-card:hover .play-btn{ background:var(--gold); border-color:var(--gold); transform:scale(1.08); }
+  .play-btn svg{ width:22px; height:22px; color:#fff; margin-inline-start:3px; }
+
+
+  /* ===== Location ===== */
+  .location{ background:var(--cream); }
+  .loc-grid{ display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:stretch; }
+  .loc-card{ background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:32px; display:flex; flex-direction:column; gap:18px; }
+  .loc-row{ display:flex; gap:14px; align-items:flex-start; }
+  .loc-row .icon-wrap{
+    width:42px; height:42px; border-radius:11px; background:var(--cream-2);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .loc-row .icon-wrap svg{ width:20px; height:20px; color:var(--gold); }
+  .loc-row h4{ font-size:15.5px; margin-bottom:3px; }
+  .loc-row p{ color:var(--ink-soft); font-size:14.5px; }
+  .map-embed{ border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); min-height:320px; border:1px solid var(--line); }
+  .map-embed iframe{ width:100%; height:100%; min-height:320px; border:0; display:block; }
+
+  /* ===== CTA strip ===== */
+  .cta-strip{
+    background:linear-gradient(135deg,var(--gold-2),var(--gold));
+    text-align:center; padding:64px 20px;
+  }
+  .cta-strip h2{ color:#fff; font-size:clamp(24px,3.6vw,32px); margin-bottom:12px; }
+  .cta-strip p{ color:#f3ecff; margin-bottom:28px; }
+  
+
+  /* ===== Payment methods ===== */
+  .payments-sec{ background:var(--cream); padding:52px 20px; text-align:center; border-top:1px solid var(--line); }
+  .payments-sec .lbl{ font-weight:700; color:var(--ink-soft); font-size:14.5px; margin-bottom:20px; }
+  .pay-row{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:12px; max-width:820px; margin:0 auto; }
+  .pay-badge{
+    display:inline-flex; align-items:center; gap:7px; height:40px; padding:0 16px;
+    border-radius:9px; font-weight:800; font-size:14px; color:#fff; box-shadow:var(--shadow);
+    letter-spacing:.2px;
+  }
+  .pay-badge.pb-mada{ background:#0a8a5f; }
+  .pay-badge.pb-visa{ background:#14336b; font-style:italic; letter-spacing:.5px; }
+  .pay-badge.pb-mc{ background:#232323; padding-inline-start:10px; }
+  .pay-badge.pb-mc .mc-circles{ display:inline-flex; margin-inline-end:2px; }
+  .pay-badge.pb-mc .mc-circles span{ width:15px; height:15px; border-radius:50%; display:inline-block; }
+  .pay-badge.pb-mc .mc-circles span:first-child{ background:#eb4d3d; margin-inline-end:-6px; }
+  .pay-badge.pb-mc .mc-circles span:last-child{ background:#f2a900; opacity:.9; }
+  .pay-badge.pb-applepay{ background:#000; }
+  .pay-badge.pb-stc{ background:#5b2a86; }
+  .pay-badge.pb-transfer{ background:var(--cream-2); color:var(--ink); border:1px solid var(--line); }
+  .pay-badge.pb-cash{ background:var(--cream-2); color:var(--ink); border:1px solid var(--line); }
+  .pay-badge svg{ width:16px; height:16px; }
+
+  /* ===== Footer ===== */
+  footer{ background:#161228; color:#b9adcf; padding:56px 20px 26px; }
+  .foot-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px; margin-bottom:40px; }
+  .foot-logo{ display:flex; align-items:center; gap:10px; color:#fff; font-weight:800; font-size:19px; margin-bottom:14px; }
+  footer h5{ color:#fff; font-size:14.5px; margin-bottom:16px; }
+  footer ul li{ margin-bottom:10px; font-size:14px; }
+  footer ul li a:hover{ color:var(--gold-2); }
+  .foot-bottom{ border-top:1px solid rgba(255,255,255,.08); padding-top:20px; text-align:center; font-size:13px; color:#847a9c; }
+  .social-ico{
+    width:38px; height:38px; border-radius:10px; background:rgba(255,255,255,.08);
+    display:flex; align-items:center; justify-content:center; transition:.2s;
+  }
+  .social-ico svg{ width:17px; height:17px; color:#b9adcf; }
+  .social-ico:hover{ background:var(--gold); }
+  .social-ico:hover svg{ color:#fff; }
+
+  /* ===== Floating WhatsApp ===== */
+  .float-wa{
+    position:fixed; bottom:24px; right:24px; z-index:90;
+    width:60px; height:60px; border-radius:50%; background:var(--whatsapp);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 12px 28px -8px rgba(37,211,102,.6);
+    animation:pulseWa 2.4s infinite;
+  }
+  .float-wa svg{ width:30px; height:30px; color:#fff; }
+  @keyframes pulseWa{
+    0%{ box-shadow:0 0 0 0 rgba(37,211,102,.55); }
+    70%{ box-shadow:0 0 0 16px rgba(37,211,102,0); }
+    100%{ box-shadow:0 0 0 0 rgba(37,211,102,0); }
+  }
+
+  /* ===== شريط الحجز الثابت — يظهر بالجوال فقط ===== */
+  .mobile-book-bar{
+    display:none;
+    position:fixed; inset-inline:0; bottom:0; z-index:95;
+    background:rgba(30,24,48,.97); backdrop-filter:blur(8px);
+    padding:12px 16px; padding-bottom:calc(12px + env(safe-area-inset-bottom));
+    align-items:center; justify-content:space-between; gap:12px;
+    box-shadow:0 -8px 24px rgba(0,0,0,.25);
+  }
+  .mobile-book-bar .txt{ color:#e5e0f5; font-size:13.5px; font-weight:700; }
+  .mobile-book-bar .txt small{ display:block; color:#9086a8; font-size:11.5px; font-weight:600; }
+  .mobile-book-bar .btn{ padding:13px 22px; font-size:14.5px; flex-shrink:0; }
+
+  .reveal{ opacity:0; transform:translateY(24px); transition:.7s ease; }
+  .reveal.visible{ opacity:1; transform:none; }
+
+  @media (max-width:920px){
+    nav.main-nav, .nav-actions{ display:none; }
+    .burger{ display:block; }
+    .intro-grid, .loc-grid{ grid-template-columns:1fr; }
+    .chalet-grid, .video-grid, .why-grid, .testi-grid{ grid-template-columns:1fr; }
+    .foot-grid{ grid-template-columns:1fr 1fr; }
+    section{ padding:64px 18px; }
+    body{ padding-bottom:78px; } /* مساحة لشريط الحجز الثابت بالأسفل */
+    .mobile-book-bar{ display:flex; }
+    .float-wa{ display:none; } /* الزر العائم مستبدل بشريط الحجز بالجوال */
+  }
+  @media (max-width:520px){
+    .foot-grid{ grid-template-columns:1fr; gap:28px; }
+    .hero-stats div{ padding-inline-end:22px; margin-inline-end:22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header id="siteHeader">
+  <a href="#top" class="logo"><img class="mark" src="images/logo.png" alt="شعار شاليهات الثانية"> <span data-i18n="brand">شاليهات الثانية</span></a>
+  <nav class="main-nav">
+    <a href="#chalets" data-i18n="nav_chalets">الشاليهات</a>
+    <a href="#video" data-i18n="nav_video">جولة فيديو</a>
+    <a href="#location" data-i18n="nav_location">الموقع</a>
+    <a href="#contact" data-i18n="nav_contact">تواصل معنا</a>
+    <a href="#" id="navStoreLink" target="_blank" rel="noopener" data-i18n="nav_store" style="display:none;">🛍️ المتجر</a>
+  </nav>
+  <div class="header-quick-actions">
+    <button class="lang-btn theme-btn" id="themeToggle" type="button" aria-label="تبديل الوضع الليلي"></button>
+    <button class="lang-btn" id="langToggle" type="button"></button>
+  </div>
+  <div class="nav-actions">
+    <a href="#" class="btn btn-whatsapp js-wa" data-msg="مرحباً، أبي أستفسر عن حجز شاليه" data-msg-en="Hi, I'd like to ask about booking a chalet">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5C10 9 9.3 7.6 9 7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.3 4.9 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.7 0-3.3-.5-4.6-1.3l-.3-.2-3 .8.8-2.9-.2-.3C3.9 15 3.5 13.6 3.5 12c0-4.7 3.8-8.5 8.5-8.5s8.5 3.8 8.5 8.5-3.8 8.3-8.5 8.3z"/></svg>
+      <span data-i18n="btn_book_now">احجز الآن</span>
+    </a>
+  </div>
+  <button class="burger" id="burgerBtn" data-i18n-aria="aria_menu" aria-label="القائمة">☰</button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-x" id="closeMenu">✕</button>
+  <a href="#chalets" data-i18n="nav_chalets">الشاليهات</a>
+  <a href="#video" data-i18n="nav_video">جولة فيديو</a>
+  <a href="#location" data-i18n="nav_location">الموقع</a>
+  <a href="#contact" data-i18n="nav_contact">تواصل معنا</a>
+  <a href="#" id="navStoreLinkMobile" target="_blank" rel="noopener" data-i18n="nav_store" style="display:none;">🛍️ المتجر</a>
+  <a href="#" class="btn btn-whatsapp js-wa" data-msg="مرحباً، أبي أستفسر عن حجز شاليه" data-msg-en="Hi, I'd like to ask about booking a chalet" data-i18n="btn_book_now">احجز الآن</a>
+</div>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="top">
+  <div class="hero-slides" id="heroSlides"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-dots" id="heroDots"></div>
+  <div class="hero-inner">
+    <div class="hero-caption" id="heroCaption"></div>
+    <span class="eyebrow" data-i18n="hero_eyebrow">شاليهات الثانية · أربع وحدات فاخرة</span>
+    <h1 data-i18n="hero_h1">راحتك واستراحتك <em>تبدأ من هنا</em></h1>
+    <p class="lead" data-i18n="hero_lead">استمتع بإقامة هادئة بخصوصية تامة، تجهيزات كاملة، وإطلالة تنسيك زحمة اليوم — احجز شاليهك المفضل بضغطة واحدة عبر واتساب.</p>
+    <div class="hero-ctas">
+      <a href="#chalets" class="btn btn-outline" data-i18n="btn_browse_chalets">تصفّح الشاليهات</a>
+    </div>
+    <div class="hero-stats">
+      <div data-i18n="stat1"><b>٤</b><span>وحدات مستقلة</span></div>
+      <div data-i18n="stat2"><b>١٠٠٪</b><span>خصوصية تامة</span></div>
+      <div data-i18n="stat3"><b>٢٤/٧</b><span>رد سريع على واتساب</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Intro ===== -->
+<section class="intro">
+  <div class="wrap intro-grid">
+    <div class="intro-photos reveal">
+      <div class="ph-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 15l-5-4-4 3-3-2-6 5"/></svg><small data-i18n="gal_general">صورة عامة للمجمع</small></div>
+      <div class="ph-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 15l-5-4-4 3-3-2-6 5"/></svg><small data-i18n="gal_outdoor">الجلسة الخارجية</small></div>
+      <div class="ph-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 15l-5-4-4 3-3-2-6 5"/></svg><small data-i18n="gal_pool">المسبح</small></div>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow" data-i18n="intro_eyebrow">لمحة عن المكان</span>
+      <h2 class="sec-title" data-i18n="intro_title">تجربة استراحة متكاملة لعائلتك وضيوفك</h2>
+      <p class="sec-sub" data-i18n="intro_sub">صممنا شاليهات الثانية لتكون وجهتك المفضلة لقضاء وقت هادئ بعيداً عن صخب المدينة — كل وحدة مجهزة بالكامل ومستقلة تماماً عن الأخرى، مع اهتمام خاص بالنظافة والراحة من أول لحظة دخول.</p>
+      <div class="feature-mini">
+        <span data-i18n="feat_pool_all">🏊 مسبح خاص لكل وحدة</span>
+        <span data-i18n="feat_ac">❄️ تكييف سبليت</span>
+        <span data-i18n="feat_bedrooms">🛏️ غرف نوم مجهزة بالكامل</span>
+        <span data-i18n="feat_bathrooms">🚿 دورات مياه متكاملة ومجهزة بكل الأدوات اللازمة</span>
+        <span data-i18n="feat_wifi_fast">📶 واي فاي عالي السرعة</span>
+        <span data-i18n="feat_parking">🚗 موقف سيارات خاص</span>
+        <span data-i18n="feat_mist">🌫️ نظام ضباب خارجي للحديقة</span>
+        <span data-i18n="feat_kitchen">🍳 مطبخ مجهز بالكامل</span>
+        <span data-i18n="feat_bbq">🔥 شواية خارجية</span>
+        <span data-i18n="feat_speakers">🎵 سماعات سقفية للأغاني</span>
+        <span data-i18n="feat_laser">🎇 إضاءة ليزر للحفلات</span>
+        <span data-i18n="feat_freshener">🌸 أجهزة تعطير داخلية</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== لماذا شاليهات الثانية ===== -->
+<section class="why-sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="why_eyebrow">تجربة الضيافة</span>
+      <h2 class="sec-title" data-i18n="why_title">ليش تختار شاليهات الثانية</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg></div>
+        <h4 data-i18n="why1_title">خصوصية تامة</h4>
+        <p data-i18n="why1_desc">كل وحدة مستقلة بالكامل بمدخل ومسبح خاص — بلا أي مشاركة مع باقي الشاليهات.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V10l8-6 8 6v10M9 20v-6h6v6"/></svg></div>
+        <h4 data-i18n="why2_title">تجهيزات كاملة</h4>
+        <p data-i18n="why2_desc">تكييف، مطبخ، واي فاي، وكل ما تحتاجه لإقامة مريحة بلا أي تحضير مسبق.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v12H8l-4 4V4z"/></svg></div>
+        <h4 data-i18n="why3_title">رد فوري على واتساب</h4>
+        <p data-i18n="why3_desc">تواصل معنا بأي وقت — نرد عليك ونأكد حجزك بأسرع وقت ممكن.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+        <h4 data-i18n="why4_title">احجز مباشر ووفر</h4>
+        <p data-i18n="why4_desc">لا عمولات ولا وسيط — الحجز المباشر معنا عبر واتساب دايماً أوفر لك من منصات الحجز الخارجية.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Chalets / الأسعار ===== -->
+<section class="chalets" id="chalets">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="chalets_eyebrow">تفاصيل الشاليهات</span>
+      <h2 class="sec-title" data-i18n="chalets_title">اختر شاليهك</h2>
+      <p class="sec-sub" data-i18n="chalets_sub">أربع وحدات مستقلة، كل وحدة بمميزاتها الخاصة — اضغط "احجز عبر واتساب" وسيصلنا رقم الشاليه تلقائياً.</p>
+      <a href="#" id="calendarBtn" target="_blank" rel="noopener" class="btn btn-outline on-light" style="display:none; margin-top:18px;" data-i18n="btn_view_calendar">📅 شوف التواريخ المتاحة</a>
+    </div>
+
+    <div class="chalet-grid">
+
+      <!-- ===== شاليه ١ (أحمر) ===== -->
+      <div class="chalet-card reveal" style="--accent:var(--c1)">
+        <div class="chalet-gallery">
+          <div class="gallery-main"><img src="images/chalet1/pool-main.jpg" alt="المسبح الخاص - شاليه ١" onclick="openLightbox(this)"></div>
+          <div class="gallery-thumbs">
+            <img src="images/chalet1/hall.jpg" alt="الصالة - شاليه ١" onclick="openLightbox(this)">
+            <img src="images/chalet1/bedroom.jpg" alt="غرفة النوم - شاليه ١" onclick="openLightbox(this)">
+            <img src="images/chalet1/kitchen.jpg" alt="المطبخ - شاليه ١" onclick="openLightbox(this)">
+            <img src="images/chalet1/bathroom.jpg" alt="دورة المياه - شاليه ١" onclick="openLightbox(this)">
+            <img src="images/chalet1/garden.jpg" alt="الحديقة الخارجية - شاليه ١" onclick="openLightbox(this)">
+            <img src="images/chalet1/majlis.jpg" alt="المجلس الخارجي - شاليه ١" onclick="openLightbox(this)">
+            <img src="images/chalet1/sinks.jpg" alt="المغاسل الخارجية - شاليه ١" onclick="openLightbox(this)">
+          </div>
+        </div>
+        <div class="chalet-body">
+          <div class="chalet-head">
+            <h3><span class="dot"></span> <span data-i18n="chalet1_name">شاليه ١</span></h3>
+            <span class="cap-badge" data-i18n="chalet1_cap">حتى ١٥ شخص</span>
+          </div>
+          <div class="feat-list">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6-10-6-10-6z"/></svg> <span data-i18n="feat_pool">مسبح خاص</span></span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg> <span data-i18n="feat_ac_short">تكييف سبليت</span></span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13a10 10 0 0114 0M8.5 16.5a5 5 0 017 0M12 20h.01"/></svg> <span data-i18n="feat_wifi">واي فاي</span></span>
+          </div>
+          <div class="chalet-foot">
+            <button type="button" class="btn btn-outline on-light chalet-details-btn" data-chalet="1" data-i18n="btn_details">📋 التفاصيل والأسعار</button>
+            <a href="#" class="btn btn-whatsapp js-wa" data-msg="مرحباً، أبي أحجز شاليه ١" data-msg-en="Hi, I'd like to book Chalet 1" data-i18n="btn_book_wa_short">احجز واتساب</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== شاليه ٢ (بنفسجي) ===== -->
+      <div class="chalet-card reveal" style="--accent:var(--c2)">
+        <div class="chalet-gallery">
+          <div class="gallery-main"><img src="images/chalet2/pool-playground-main.jpg" alt="المسبح والملعب الخارجي - شاليه ٢" onclick="openLightbox(this)"></div>
+          <div class="gallery-thumbs">
+            <img src="images/chalet2/hall-1.jpg" alt="الصالة - شاليه ٢" onclick="openLightbox(this)">
+            <img src="images/chalet2/hall-2.jpg" alt="الصالة - شاليه ٢" onclick="openLightbox(this)">
+            <img src="images/chalet2/hall-3.jpg" alt="الصالة - شاليه ٢" onclick="openLightbox(this)">
+            <img src="images/chalet2/kitchen.jpg" alt="المطبخ - شاليه ٢" onclick="openLightbox(this)">
+            <img src="images/chalet2/dining.jpg" alt="ركن الطعام - شاليه ٢" onclick="openLightbox(this)">
+            <img src="images/chalet2/bathroom.jpg" alt="دورة المياه - شاليه ٢" onclick="openLightbox(this)">
+            <img src="images/chalet2/seating-outdoor.jpg" alt="الجلسة الخارجية - شاليه ٢" onclick="openLightbox(this)">
+            <img src="images/chalet2/garden.jpg" alt="الحديقة الخارجية - شاليه ٢" onclick="openLightbox(this)">
+            <img src="images/chalet2/kids-play.jpg" alt="ألعاب الأطفال - شاليه ٢" onclick="openLightbox(this)">
+            <img src="images/chalet2/pool-playground-1.jpg" alt="المسبح والملعب - شاليه ٢" onclick="openLightbox(this)">
+            <img src="images/chalet2/pool-playground-2.jpg" alt="المسبح والملعب - شاليه ٢" onclick="openLightbox(this)">
+          </div>
+        </div>
+        <div class="chalet-body">
+          <div class="chalet-head">
+            <h3><span class="dot"></span> <span data-i18n="chalet2_name">شاليه ٢</span></h3>
+            <span class="cap-badge" data-i18n="chalet2_cap">حتى ٢٠ شخص</span>
+          </div>
+          <div class="feat-list">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6-10-6-10-6z"/></svg> <span data-i18n="feat_pool">مسبح خاص</span></span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg> <span data-i18n="feat_ac_short">تكييف سبليت</span></span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v13H7l-4 4V3z"/></svg> <span data-i18n="feat_kitchen_full">مطبخ مجهز بالكامل</span></span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2s7 7.5 7 12a7 7 0 01-14 0c0-4.5 7-12 7-12z"/></svg> <span data-i18n="feat_water_play">ألعاب مائية للأطفال</span></span>
+          </div>
+          <div class="chalet-foot">
+            <button type="button" class="btn btn-outline on-light chalet-details-btn" data-chalet="2" data-i18n="btn_details">📋 التفاصيل والأسعار</button>
+            <a href="#" class="btn btn-whatsapp js-wa" data-msg="مرحباً، أبي أحجز شاليه ٢" data-msg-en="Hi, I'd like to book Chalet 2" data-i18n="btn_book_wa_short">احجز واتساب</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== شاليه ٣ (برتقالي) ===== -->
+      <div class="chalet-card reveal" style="--accent:var(--c3)">
+        <div class="chalet-gallery">
+          <div class="gallery-main"><img src="images/chalet3/garden-pool-majlis-main.jpg" alt="الحديقة والمسبح والمجلس الخارجي - شاليه ٣" onclick="openLightbox(this)"></div>
+          <div class="gallery-thumbs">
+            <img src="images/chalet3/entrance.jpg" alt="المدخل الخارجي - شاليه ٣" onclick="openLightbox(this)">
+            <img src="images/chalet3/garden.jpg" alt="الحديقة الخارجية - شاليه ٣" onclick="openLightbox(this)">
+            <img src="images/chalet3/pool.jpg" alt="المسبح - شاليه ٣" onclick="openLightbox(this)">
+            <img src="images/chalet3/pool-night.jpg" alt="جلسة المسبح ليلاً - شاليه ٣" onclick="openLightbox(this)">
+            <img src="images/chalet3/hall-1.jpg" alt="الصالة - شاليه ٣" onclick="openLightbox(this)">
+            <img src="images/chalet3/hall-2.jpg" alt="الصالة - شاليه ٣" onclick="openLightbox(this)">
+            <img src="images/chalet3/bedroom-1.jpg" alt="غرفة النوم - شاليه ٣" onclick="openLightbox(this)">
+            <img src="images/chalet3/bedroom-2.jpg" alt="غرفة النوم - شاليه ٣" onclick="openLightbox(this)">
+            <img src="images/chalet3/kitchen-1.jpg" alt="المطبخ - شاليه ٣" onclick="openLightbox(this)">
+            <img src="images/chalet3/kitchen-2.jpg" alt="المطبخ - شاليه ٣" onclick="openLightbox(this)">
+            <img src="images/chalet3/bathroom.jpg" alt="دورة المياه - شاليه ٣" onclick="openLightbox(this)">
+            <img src="images/chalet3/majlis-1.jpg" alt="المجلس الخارجي - شاليه ٣" onclick="openLightbox(this)">
+            <img src="images/chalet3/majlis-2.jpg" alt="المجلس الخارجي - شاليه ٣" onclick="openLightbox(this)">
+            <img src="images/chalet3/sinks.jpg" alt="المغاسل الخارجية - شاليه ٣" onclick="openLightbox(this)">
+          </div>
+        </div>
+        <div class="chalet-body">
+          <div class="chalet-head">
+            <h3><span class="dot"></span> <span data-i18n="chalet3_name">شاليه ٣</span></h3>
+            <span class="cap-badge" data-i18n="chalet3_cap">حتى ١٥ شخص</span>
+          </div>
+          <div class="feat-list">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6-10-6-10-6z"/></svg> <span data-i18n="feat_pool">مسبح خاص</span></span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20l4-9 4 5 4-11 4 15"/></svg> <span data-i18n="feat_playground">ملعب صغير</span></span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13a10 10 0 0114 0M8.5 16.5a5 5 0 017 0M12 20h.01"/></svg> <span data-i18n="feat_wifi">واي فاي</span></span>
+          </div>
+          <div class="chalet-foot">
+            <button type="button" class="btn btn-outline on-light chalet-details-btn" data-chalet="3" data-i18n="btn_details">📋 التفاصيل والأسعار</button>
+            <a href="#" class="btn btn-whatsapp js-wa" data-msg="مرحباً، أبي أحجز شاليه ٣" data-msg-en="Hi, I'd like to book Chalet 3" data-i18n="btn_book_wa_short">احجز واتساب</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== شاليه ٤ (فيروزي) ===== -->
+      <div class="chalet-card reveal" style="--accent:var(--c4)">
+        <div class="chalet-gallery">
+          <div class="gallery-main"><img src="images/chalet4/garden-pool-main.jpg" alt="الحديقة والمسبح - شاليه ٤" onclick="openLightbox(this)"></div>
+          <div class="gallery-thumbs">
+            <img src="images/chalet4/garden.jpg" alt="الحديقة الخارجية - شاليه ٤" onclick="openLightbox(this)">
+            <img src="images/chalet4/pool-night.jpg" alt="جلسة المسبح ليلاً - شاليه ٤" onclick="openLightbox(this)">
+            <img src="images/chalet4/hall-1.jpg" alt="الصالة - شاليه ٤" onclick="openLightbox(this)">
+            <img src="images/chalet4/hall-2.jpg" alt="الصالة - شاليه ٤" onclick="openLightbox(this)">
+            <img src="images/chalet4/kitchen-1.jpg" alt="المطبخ - شاليه ٤" onclick="openLightbox(this)">
+            <img src="images/chalet4/kitchen-2.jpg" alt="المطبخ - شاليه ٤" onclick="openLightbox(this)">
+            <img src="images/chalet4/bathroom.jpg" alt="دورة المياه - شاليه ٤" onclick="openLightbox(this)">
+            <img src="images/chalet4/majlis-1.jpg" alt="المجلس الخارجي - شاليه ٤" onclick="openLightbox(this)">
+            <img src="images/chalet4/majlis-2.jpg" alt="المجلس الخارجي - شاليه ٤" onclick="openLightbox(this)">
+            <img src="images/chalet4/sinks.jpg" alt="المغاسل الخارجية - شاليه ٤" onclick="openLightbox(this)">
+          </div>
+        </div>
+        <div class="chalet-body">
+          <div class="chalet-head">
+            <h3><span class="dot"></span> <span data-i18n="chalet4_name">شاليه ٤</span></h3>
+            <span class="cap-badge" data-i18n="chalet4_cap">حتى ١٥ شخص</span>
+          </div>
+          <div class="feat-list">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg> <span data-i18n="feat_ac_short">تكييف سبليت</span></span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v13H7l-4 4V3z"/></svg> <span data-i18n="feat_kitchen_full">مطبخ مجهز بالكامل</span></span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13a10 10 0 0114 0M8.5 16.5a5 5 0 017 0M12 20h.01"/></svg> <span data-i18n="feat_wifi">واي فاي</span></span>
+          </div>
+          <div class="chalet-foot">
+            <button type="button" class="btn btn-outline on-light chalet-details-btn" data-chalet="4" data-i18n="btn_details">📋 التفاصيل والأسعار</button>
+            <a href="#" class="btn btn-whatsapp js-wa" data-msg="مرحباً، أبي أحجز شاليه ٤" data-msg-en="Hi, I'd like to book Chalet 4" data-i18n="btn_book_wa_short">احجز واتساب</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== آراء العملاء ===== -->
+<!-- عدّل CONFIG.testimonials بنهاية الملف بآراء عملاء حقيقيين (انسخها من رسائل الشكر اللي توصلك بواتساب) -->
+<section class="testimonials" id="testimonials">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="testi_eyebrow">آراء عملائنا</span>
+      <h2 class="sec-title" data-i18n="testi_title">وش يقول ضيوفنا</h2>
+      <p class="sec-sub" data-i18n="testi_sub">تجارب حقيقية من عملاء سبق واستضفناهم.</p>
+      <a href="https://maps.app.goo.gl/sVy5rwofeb4CJ7nT7" target="_blank" rel="noopener" class="google-rating-badge">
+        <span>⭐ 4.6</span>
+        <span data-i18n="testi_google_count">بناءً على 433 تقييم على خرائط قوقل</span>
+      </a>
+    </div>
+    <div class="testi-grid reveal" id="testiGrid"></div>
+  </div>
+</section>
+
+<!-- ===== Video ===== -->
+<section class="video-sec" id="video">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="video_eyebrow">جولة مصوّرة</span>
+      <h2 class="sec-title" data-i18n="video_title">شوف الشاليهات قبل ما توصل</h2>
+      <p class="sec-sub" data-i18n="video_sub">مقاطع فيديو قصيرة تعطيك فكرة كاملة عن المكان والتجهيزات.</p>
+    </div>
+    <div class="video-grid">
+      <div class="video-card reveal">
+        <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+        <small data-i18n="video1_label">جولة عامة على المجمع</small>
+      </div>
+      <div class="video-card reveal">
+        <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+        <small data-i18n="video2_label">المسبح والجلسة الخارجية</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Location ===== -->
+<section class="location" id="location">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="loc_eyebrow">كيف توصل</span>
+      <h2 class="sec-title" data-i18n="loc_title">موقع شاليهات الثانية</h2>
+    </div>
+    <div class="loc-grid">
+      <div class="loc-card reveal">
+        <div class="loc-row">
+          <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.3"/></svg></div>
+          <div><h4 data-i18n="loc_addr_title">العنوان</h4><p id="addrText">اكتب هنا وصف موقع الشاليهات (الحي / الطريق / أقرب معلم)</p></div>
+        </div>
+        <div class="loc-row">
+          <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          <div><h4 data-i18n="loc_hours_title">مواعيد الدخول والخروج</h4><p data-i18n="loc_hours_desc">الدخول من الساعة ٢ ظهراً — الخروج قبل الساعة ١٢ ظهراً</p></div>
+        </div>
+        <div class="loc-row">
+          <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7M5 10v10h5v-6h4v6h5V10"/></svg></div>
+          <div><h4 data-i18n="loc_access_title">سهولة الوصول</h4><p data-i18n="loc_access_desc">مواقف سيارات مخصصة قريبة من كل وحدة</p></div>
+        </div>
+        <a href="#" id="mapsBtn" target="_blank" rel="noopener" class="btn btn-dark" style="align-self:flex-start">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.3"/></svg>
+          <span data-i18n="btn_directions">الاتجاهات على خرائط قوقل</span>
+        </a>
+      </div>
+      <div class="map-embed reveal">
+        <iframe id="mapsFrame" src="https://www.google.com/maps?q=24.7136,46.6753&z=14&output=embed" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== الأسئلة الشائعة وسياسات الحجز ===== -->
+<!-- راجع الإجابات وعدّلها حسب سياستك الفعلية (الإلغاء، التدخين، الحيوانات، العربون...) -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="faq_eyebrow">قبل ما تحجز</span>
+      <h2 class="sec-title" data-i18n="faq_title">أسئلة شائعة</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details class="faq-item">
+        <summary data-i18n="faq1_q">هل فيه إمكانية إلغاء أو تعديل الحجز؟</summary>
+        <p data-i18n="faq1_a">نعم، تواصل معنا عبر واتساب قبل موعد الوصول بوقت كافٍ ونساعدك بالإلغاء أو تعديل التاريخ حسب توفر الوحدات.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="faq2_q">هل التدخين مسموح داخل الشاليه؟</summary>
+        <p data-i18n="faq2_a">التدخين غير مسموح داخل الوحدات حفاظاً على نظافتها لبقية الضيوف، ومسموح بالمناطق الخارجية.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="faq3_q">هل يسمح باصطحاب حيوانات أليفة؟</summary>
+        <p data-i18n="faq3_a">يرجى التواصل معنا مسبقاً عبر واتساب لو ناوي تصطحب حيوان أليف حتى نأكد لك إمكانية ذلك.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="faq4_q">هل فيه عربون أو مبلغ تأمين؟</summary>
+        <p data-i18n="faq4_a">نعم، يوجد مبلغ تأمين يُسترجع بعد المغادرة في حال سلامة الوحدة ومحتوياتها — التفاصيل تُرسل لك عند تأكيد الحجز عبر واتساب.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="faq5_q">كم أقل عدد ليالي للحجز؟</summary>
+        <p data-i18n="faq5_a">الحجز متاح لليلة واحدة فأكثر، وتختلف الأولوية بأيام نهاية الأسبوع — تواصل معنا لمعرفة التوفر الحالي.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA Strip ===== -->
+<section class="cta-strip">
+  <div class="wrap">
+    <h2 data-i18n="cta_title">جاهز تحجز استراحتك القادمة؟</h2>
+    <p data-i18n="cta_desc">راسلنا الحين على واتساب ونرد عليك بأسرع وقت</p>
+    <a href="#" class="btn btn-dark js-wa" data-msg="مرحباً، أبي أستفسر عن حجز شاليه" data-msg-en="Hi, I'd like to ask about booking a chalet">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5C10 9 9.3 7.6 9 7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.3 4.9 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.7 0-3.3-.5-4.6-1.3l-.3-.2-3 .8.8-2.9-.2-.3C3.9 15 3.5 13.6 3.5 12c0-4.7 3.8-8.5 8.5-8.5s8.5 3.8 8.5 8.5-3.8 8.3-8.5 8.3z"/></svg>
+      <span data-i18n="btn_contact_now">تواصل معنا الآن</span>
+    </a>
+  </div>
+</section>
+
+<!-- ===== طرق الدفع ===== -->
+<section class="payments-sec">
+  <div class="lbl" data-i18n="pay_label">💳 نقبل جميع وسائل الدفع</div>
+  <div class="pay-row">
+    <span class="pay-badge pb-mada">mada</span>
+    <span class="pay-badge pb-visa">VISA</span>
+    <span class="pay-badge pb-mc"><span class="mc-circles"><span></span><span></span></span>Mastercard</span>
+    <span class="pay-badge pb-applepay"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 7.7c-.6.7-1.5 1.2-2.4 1.1-.1-.9.3-1.9.9-2.5.6-.7 1.6-1.2 2.4-1.3.1 1-.3 1.9-.9 2.7zm.9 1.4c-1.3-.1-2.4.7-3.1.7-.6 0-1.6-.7-2.7-.7-1.4 0-2.7.8-3.4 2.1-1.5 2.5-.4 6.3 1 8.3.7 1 1.5 2.1 2.6 2 1-.1 1.4-.7 2.7-.7s1.6.7 2.7.7c1.1 0 1.8-1 2.5-2 .8-1.1 1.1-2.2 1.1-2.3-.1 0-2.2-.8-2.2-3.2 0-1.9 1.6-2.9 1.7-2.9-.9-1.4-2.4-1.6-2.9-1.6z"/></svg>Apple Pay</span>
+    <span class="pay-badge pb-stc">STC Pay</span>
+    <span class="pay-badge pb-transfer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10h18M7 15h.01M11 15h.01M3 6l9-3 9 3v1H3V6z"/><path d="M4 10v8h16v-8"/></svg><span data-i18n="pay_transfer">تحويل بنكي</span></span>
+    <span class="pay-badge pb-cash"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg><span data-i18n="pay_cash">الدفع كاش</span></span>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer id="contact">
+  <div class="wrap foot-grid">
+    <div>
+      <div class="foot-logo"><img class="mark" src="images/logo.png" alt="شعار شاليهات الثانية"> <span data-i18n="brand">شاليهات الثانية</span></div>
+      <p style="font-size:14px; max-width:320px;" data-i18n="footer_tagline">وجهتك المفضلة لاستراحة هادئة بخصوصية تامة وتجهيزات كاملة لعائلتك وضيوفك.</p>
+    </div>
+    <div>
+      <h5 data-i18n="footer_quicklinks">روابط سريعة</h5>
+      <ul>
+        <li><a href="#chalets" data-i18n="footer_link_chalets">الشاليهات والأسعار</a></li>
+        <li><a href="#video" data-i18n="nav_video">جولة فيديو</a></li>
+        <li><a href="#location" data-i18n="nav_location">الموقع</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5 data-i18n="nav_contact">تواصل معنا</h5>
+      <ul>
+        <li><a href="#" class="js-wa" data-msg="مرحباً، أبي أستفسر عن حجز شاليه" data-msg-en="Hi, I'd like to ask about booking a chalet"><span data-i18n="footer_wa_label">📱 واتساب: </span><span id="phoneDisplay" dir="ltr" style="unicode-bidi:isolate;">05XXXXXXXX</span></a></li>
+        <li id="emailLi" style="display:none">✉️ <a href="#"><span></span></a></li>
+        <li data-i18n="footer_reply_time">🕐 الرد متاح يومياً</li>
+      </ul>
+      <div id="socialLinks" style="display:flex; gap:10px; margin-top:16px;"></div>
+    </div>
+  </div>
+  <div class="foot-bottom">© <span id="year"></span> <span data-i18n="footer_copyright">شاليهات الثانية — جميع الحقوق محفوظة</span></div>
+</footer>
+
+<!-- ===== Floating WhatsApp (يظهر على الكمبيوتر/التابلت فقط) ===== -->
+<a href="#" class="float-wa js-wa" data-msg="مرحباً، أبي أستفسر عن حجز شاليه" data-msg-en="Hi, I'd like to ask about booking a chalet" data-i18n-aria="aria_wa" aria-label="تواصل واتساب">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5C10 9 9.3 7.6 9 7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.3 4.9 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.7 0-3.3-.5-4.6-1.3l-.3-.2-3 .8.8-2.9-.2-.3C3.9 15 3.5 13.6 3.5 12c0-4.7 3.8-8.5 8.5-8.5s8.5 3.8 8.5 8.5-3.8 8.3-8.5 8.3z"/></svg>
+</a>
+
+<!-- ===== شريط الحجز الثابت للجوال ===== -->
+<div class="mobile-book-bar">
+  <span class="txt" data-i18n="mobilebar">حجز سريع وسهل<small>عبر واتساب مباشرة</small></span>
+  <a href="#" class="btn btn-whatsapp js-wa" data-msg="مرحباً، أبي أستفسر عن حجز شاليه" data-msg-en="Hi, I'd like to ask about booking a chalet">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5C10 9 9.3 7.6 9 7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.3 4.9 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.7 0-3.3-.5-4.6-1.3l-.3-.2-3 .8.8-2.9-.2-.3C3.9 15 3.5 13.6 3.5 12c0-4.7 3.8-8.5 8.5-8.5s8.5 3.8 8.5 8.5-3.8 8.3-8.5 8.3z"/></svg>
+    <span data-i18n="btn_book_now">احجز الآن</span>
+  </a>
+</div>
+
+<!-- ===== نافذة تكبير الصور ===== -->
+<div class="img-lightbox" id="imgLightbox">
+  <button type="button" class="lb-close" id="lbClose" aria-label="إغلاق">✕</button>
+  <button type="button" class="lb-nav lb-prev" id="lbPrev" aria-label="الصورة السابقة">‹</button>
+  <img id="lightboxImg" src="" alt="">
+  <button type="button" class="lb-nav lb-next" id="lbNext" aria-label="الصورة التالية">›</button>
+  <div class="lb-counter" id="lbCounter" style="display:none;"></div>
+</div>
+
+<!-- ===== نافذة تشغيل فيديو الشاليه ===== -->
+<div class="video-lightbox" id="videoLightbox">
+  <button type="button" class="lb-close" id="vlbClose" aria-label="إغلاق">✕</button>
+  <div class="video-lightbox-frame" id="videoLightboxFrame"></div>
+</div>
+
+<!-- ===== نافذة تفاصيل الشاليه (صور/فيديو + الأسعار + تعليمات الوصول) ===== -->
+<div class="chalet-modal-overlay" id="chaletModalOverlay">
+  <div class="chalet-modal" id="chaletModal">
+    <button type="button" class="chalet-modal-close" id="chaletModalClose" data-i18n-aria="aria_close_modal" aria-label="إغلاق">✕</button>
+    <div class="chalet-modal-gallery" id="modalGallery"></div>
+    <div class="chalet-modal-body">
+      <div class="chalet-head" id="modalHead"></div>
+      <div class="feat-list" id="modalFeats"></div>
+
+      <div id="modalSpecsWrap" style="display:none;">
+        <h4 class="modal-sub-title" data-i18n="modal_specs_title">📋 المواصفات الكاملة</h4>
+        <div class="modal-specs-area" id="modalSpecsArea"></div>
+        <div class="modal-specs-groups" id="modalSpecsGroups"></div>
+      </div>
+
+      <h4 class="modal-sub-title" data-i18n="modal_prices_title">💰 الأسعار</h4>
+      <div class="price-table" id="modalPrices"></div>
+
+      <h4 class="modal-sub-title" data-i18n="modal_terms_title">📋 تعليمات الوصول والحجز — يرجى القراءة جيداً قبل الحجز</h4>
+      <ul class="terms-list" id="modalTerms"></ul>
+
+      <a href="#" id="modalBookBtn" class="btn btn-whatsapp js-wa" style="width:100%; margin-top:6px;">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5C10 9 9.3 7.6 9 7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.3 4.9 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.7 0-3.3-.5-4.6-1.3l-.3-.2-3 .8.8-2.9-.2-.3C3.9 15 3.5 13.6 3.5 12c0-4.7 3.8-8.5 8.5-8.5s8.5 3.8 8.5 8.5-3.8 8.3-8.5 8.3z"/></svg>
+        <span data-i18n="btn_book_wa_short">احجز واتساب</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   CONFIG — عدّل هذا القسم فقط لتغيير رقم واتساب وموقع الخريطة
+   ========================================================= */
+const CONFIG = {
+  // رقم واتساب بصيغة دولية بدون + وبدون مسافات
+  whatsappNumber: "966505271016",
+  // نص يظهر بالفوتر كرقم تواصل
+  phoneDisplay: "+966 50 527 1016",
+  // البريد الإلكتروني (اتركه فارغاً "" لإخفاء السطر)
+  email: "ALTHANIYACHALETS@GMAIL.COM",
+  // عنوان الموقع النصي — عدّله لو حاب توضيح أكثر (رقم مبنى / أقرب معلم)
+  address: "الرياض — حي قرطبة",
+  // نفس العنوان بالإنجليزي (يظهر عند تبديل اللغة)
+  addressEn: "Riyadh — Qurtubah District",
+  // رابط "الاتجاهات" — الصق هنا رابط موقعك الدقيق من تطبيق خرائط قوقل (مشاركة > نسخ الرابط)
+  mapsLink: "https://maps.app.goo.gl/sVy5rwofeb4CJ7nT7",
+  // رابط تضمين الخريطة — بدّل الإحداثيات لموقعك الفعلي بحي قرطبة (أو الصق رابط "تضمين خريطة" كامل من قوقل)
+  mapsEmbed: "https://www.google.com/maps?q=24.836775,46.735702&z=15&output=embed",
+  // صور خلفية الهيدر المتحركة (رابط كل صورة بين قوسين) — اتركها فارغة [] لعرض تصميم تجريبي بديل
+  // مثال: heroPhotos: ["https://.../riyadh1.jpg", "https://.../riyadh2.jpg", "https://.../riyadh3.jpg"]
+  heroPhotos: [
+    { url: "images/hero/kafd.jpg", title: "مركز الملك عبدالله المالي", subtitle: "قلب الرياض المالي ليلاً", titleEn:"KAFD", subtitleEn:"Riyadh's financial heart at night" },
+    { url: "images/hero/kingdom-tower.jpg", title: "برج المملكة", subtitle: "شموخ يلامس السماء", titleEn:"Kingdom Tower", subtitleEn:"Majesty touching the sky" },
+    { url: "images/hero/boulevard-world.jpg", title: "بوليفارد وورلد", subtitle: "متعة وترفيه بلا حدود", titleEn:"Boulevard World", subtitleEn:"Endless fun and entertainment" },
+    { url: "images/hero/riyadh-lights.jpg", title: "أضواء الرياض", subtitle: "مدينة لا تنطفئ أنوارها", titleEn:"Riyadh Lights", subtitleEn:"A city whose lights never fade" },
+    { url: "images/hero/king-fahd-road.jpg", title: "طريق الملك فهد", subtitle: "نبض العاصمة نهاراً", titleEn:"King Fahd Road", subtitleEn:"The capital's daytime pulse" },
+    { url: "images/hero/riyadh-sunset.jpg", title: "غروب فوق الرياض", subtitle: "جمال يأخذ الأنفاس", titleEn:"Riyadh Sunset", subtitleEn:"Breathtaking beauty" },
+    { url: "images/hero/dusk-magic.jpg", title: "سحر الشفق", subtitle: "حين تلتقي السماء بالأبراج", titleEn:"Dusk Magic", subtitleEn:"Where the sky meets the towers" },
+    { url: "images/hero/riyadh-skyline.jpg", title: "أفق الرياض", subtitle: "مدينة عصرية لا تنام", titleEn:"Riyadh Skyline", subtitleEn:"A modern city that never sleeps" }
+  ],
+  // رابط تطبيق تقويم الحجوزات (لو موجود) — اتركه "" لإخفاء زر "شوف التواريخ المتاحة" تلقائياً
+  calendarLink: "",
+
+  // آراء عملاء حقيقيين — انسخها من رسائل الشكر اللي توصلك بواتساب (أضف/احذف عناصر بحرية)
+  // stars من 1 إلى 5 — العناصر textEn/nameEn اختيارية، لو تركتها فاضية بيُستخدم النص العربي بالوضع الإنجليزي
+  testimonials: [
+    { name: "Mohammed AlFakih", nameEn: "Mohammed AlFakih", initials: "م.ف", stars: 5,
+      text: "من أجمل الشاليهات اللي رحتها، نظيف جداً والريحة تفتح النفس، والمكان بارد والمسبح نظيف ماشاء الله. التعامل من المضيف راقٍ وآمن، والواقع أفضل من التصوير. كل الضيوف عجبهم المكان وإن شاء الله نكرر التجربة.",
+      textEn: "One of the nicest chalets I've stayed at — very clean, fresh air, cool and comfortable, with a spotless pool. The host's service was respectful and reliable, and it looks even better in person than in the photos. All our guests loved it — we'll definitely be back." },
+    { name: "أحد ضيوفنا", nameEn: "One of our guests", initials: "💕", stars: 5,
+      text: "شكراً لكم على الاهتمام بالتفاصيل الجميلة 💕 كنتم جزءاً جميلاً من لحظاتنا السعيدة، كل شيء كان متوفر وخدمة ولا أروع واستجابة مميزة لكل استفساراتنا، كان يوم جميل جداً الحمدلله 💕",
+      textEn: "Thank you for your attention to the beautiful details 💕 You were a wonderful part of our happy moments — everything was available, the service was amazing, and every question we had was answered right away. It was such a lovely day, alhamdulillah 💕" },
+    { name: "A.H", nameEn: "A.H", initials: "A.H", stars: 5,
+      text: "ماشاء الله تبارك الله، الشاليه نظيف ومرتب والتعامل ممتاز. أنصحكم فيه، والموقع قريب. الله يبارك لهم، 10/10.",
+      textEn: "The chalet is clean, tidy, and the service is excellent. Highly recommend — the location is convenient too. 10/10." }
+  ],
+
+  // روابط منصاتك الأخرى — اترك القيمة "" لإخفاء الأيقونة تلقائياً
+  social: {
+    instagram: "https://www.instagram.com/althaniya_chalets/",   // مثال: https://instagram.com/althaniya_chalets
+    snapchat: "https://snapchat.com/t/ffDjmUL8",     // مثال: https://snapchat.com/add/اسم_المستخدم
+    airbnb: "https://www.airbnb.com/rooms/46321590",       // رابط صفحتكم على Airbnb
+    gathern: "https://gathern.co/r/althaniya-chalet",      // رابط صفحتكم على قاثرن
+    tiktok: "https://www.tiktok.com/@althaniyachalets",       // رابط حسابكم على تيك توك
+    salla: "https://salla.sa/althaniyachalets"         // متجرك على سلة
+  }
+};
+
+document.getElementById('phoneDisplay').textContent = CONFIG.phoneDisplay;
+document.getElementById('addrText').textContent = CONFIG.address; // سيُحدَّث حسب اللغة بواسطة setLang()
+document.getElementById('mapsBtn').href = CONFIG.mapsLink;
+document.getElementById('mapsFrame').src = CONFIG.mapsEmbed;
+document.getElementById('year').textContent = new Date().getFullYear();
+
+if(CONFIG.calendarLink){
+  const calBtn = document.getElementById('calendarBtn');
+  calBtn.href = CONFIG.calendarLink;
+  calBtn.style.display = 'inline-flex';
+}
+
+if(CONFIG.social && CONFIG.social.salla){
+  const storeLink = document.getElementById('navStoreLink');
+  const storeLinkMobile = document.getElementById('navStoreLinkMobile');
+  storeLink.href = CONFIG.social.salla;
+  storeLink.style.display = 'inline-block';
+  storeLinkMobile.href = CONFIG.social.salla;
+  storeLinkMobile.style.display = 'block';
+}
+
+/* ===== آراء العملاء ===== */
+function renderTestimonials(lang){
+  const wrap = document.getElementById('testiGrid');
+  if(!wrap || !CONFIG.testimonials) return;
+  wrap.innerHTML = CONFIG.testimonials.map(t => {
+    const stars = '★'.repeat(t.stars || 5) + '☆'.repeat(5 - (t.stars || 5));
+    const text = lang === 'en' ? (t.textEn || t.text) : t.text;
+    const name = lang === 'en' ? (t.nameEn || t.name) : t.name;
+    return `<div class="testi-card">
+      <div class="testi-stars">${stars}</div>
+      <p class="testi-text">${text}</p>
+      <div class="testi-name"><span class="testi-avatar">${t.initials || '★'}</span> ${name}</div>
+    </div>`;
+  }).join('');
+}
+window.renderTestimonials = renderTestimonials;
+renderTestimonials('ar');
+
+/* ===== أسعار الشاليهات + تعليمات الوصول (نافذة التفاصيل) ===== */
+// عدّل الأرقام هنا لو تغيّرت الأسعار مستقبلاً — نفس المكان يحدّث النافذة لكل الشاليهات
+// أضف هنا فيديو يوتيوب لأي شاليه عنده جولة فيديو خاصة به:
+// id = المعرّف من رابط youtu.be/XXXXXXXXXXX أو youtube.com/shorts/XXXXXXXXXXX
+// vertical = true لو الفيديو "Shorts" (عمودي)، اتركه false أو احذفه للفيديو العادي (أفقي)
+const CHALET_VIDEOS = {
+  1: { id: "ZTsFcdK1b1w" },
+  2: { id: "SaC9hTJxt1A", vertical: true },
+  3: { id: "OfdRaz-xSg0" },
+  4: { id: "YWHMMJpldco" }
+};
+const PRICE_LABELS = [
+  { key: 'weekday',     ar: 'أيام الأسبوع',                 en: 'Weekdays' },
+  { key: 'weekend',     ar: 'نهاية الأسبوع (خميس وجمعة)',   en: 'Weekend (Thu & Fri)' },
+  { key: 'eidFitr',     ar: 'عيد الفطر',                    en: 'Eid al-Fitr' },
+  { key: 'eidAdha',     ar: 'عيد الأضحى',                   en: 'Eid al-Adha' },
+  { key: 'newYear',     ar: 'رأس السنة',                    en: "New Year's Day" },
+  { key: 'nationalDay', ar: 'اليوم الوطني',                  en: 'National Day' },
+  { key: 'foundingDay', ar: 'يوم التأسيس',                   en: 'Founding Day' }
+];
+const CHALET_PRICES = {
+  1: { weekday:550, weekend:700,  eidFitr:1300, eidAdha:1300, newYear:1000, nationalDay:800,  foundingDay:800  },
+  2: { weekday:800, weekend:1000, eidFitr:1300, eidAdha:1300, newYear:1000, nationalDay:1000, foundingDay:1000 },
+  3: { weekday:550, weekend:700,  eidFitr:1300, eidAdha:1300, newYear:1000, nationalDay:800,  foundingDay:800  },
+  4: { weekday:550, weekend:700,  eidFitr:1300, eidAdha:1300, newYear:1000, nationalDay:800,  foundingDay:800  }
+};
+// عدّل نص تعليمات الوصول هنا — نفس النص يظهر لكل الشاليهات بنافذة التفاصيل
+const TERMS_AR = [
+  "حجز الشاليه متاح للعوائل فقط.",
+  "منعاً للإحراج: لن تُفتح الأبواب حتى إكمال مبلغ الإيجار كاملاً + مبلغ التأمين (300 ريال) وكتابة العقد.",
+  "وقت الدخول: الساعة 2 ظهراً — وقت الخروج: الساعة 4 فجراً من اليوم التالي.",
+  "التأخر عن وقت الخروج المحدد يُخصم عنه 50 ريال عن كل ساعة تأخير من مبلغ التأمين.",
+  "يُسترد مبلغ التأمين بنفس طريقة الدفع (كاش أو تحويل بنكي) خلال 48 ساعة من وقت الخروج.",
+  "طلب الدخول المبكر (الساعة 12 ظهراً) يُضاف عليه 300 ريال على قيمة الحجز.",
+  "يُسمح بإلغاء الحجز قبل 48 ساعة من موعد الدخول — الإلغاء خلال هذه الفترة يترتب عليه خصم العربون."
+];
+const TERMS_EN = [
+  "Booking is for families only.",
+  "To avoid any inconvenience: the doors will not open until the full rental amount + a 300 SAR security deposit are paid and the contract is signed.",
+  "Check-in: 2 PM — check-out: 4 AM the following day.",
+  "Late check-out is charged at 50 SAR per hour, deducted from the security deposit.",
+  "The security deposit is refunded using the same payment method (cash or bank transfer) within 48 hours of check-out.",
+  "Early check-in (12 PM) adds 300 SAR to the booking price.",
+  "Cancellation is allowed up to 48 hours before check-in — cancelling within that window forfeits the deposit."
+];
+
+/* ===== المواصفات الكاملة لكل شاليه (نافذة التفاصيل) ===== */
+// أضف/عدّل بيانات كل شاليه هنا بنفس الشكل — يظهر تلقائياً بنافذة "التفاصيل والأسعار"
+const CHALET_SPECS = {
+  1: {
+    area: { ar: "المساحة: 200 متر مربع – يتسع حتى 15 شخص كحد أقصى", en: "Area: 200 sqm – Accommodates up to 15 guests maximum" },
+    groups: [
+      { icon: "🌿", title: { ar: "المميزات الخارجية", en: "Outdoor Features" }, items: [
+        { ar: "مجلس خارجي (مشب) 3×4 م يتسع لـ 6 أشخاص كحد أقصى، ويحتوي على مدخنة", en: "Outdoor majlis fire-pit seating, 3×4 m, for up to 6 people, with a chimney" },
+        { ar: "مسبح خارجي بسياج زجاجي، الطول 6 م والعرض 4 م، بعمق متدرج من 1 م إلى 3 م", en: "Outdoor swimming pool with a glass fence, 6×4 m, depth graduating from 1 m to 3 m" },
+        { ar: "دورة مياه خارجية بمقعد عربي", en: "Outdoor restroom with a squat toilet" },
+        { ar: "جلسة خارجية في الحديقة تتسع لـ 6 أشخاص كحد أقصى", en: "Outdoor garden seating for up to 6 people" },
+        { ar: "مغاسل خارجية (عدد 2)", en: "Two outdoor sinks" },
+        { ar: "نظام ضباب متكامل في الحديقة لأجواء منعشة", en: "A complete misting (fog) system in the garden for a refreshing atmosphere" }
+      ]},
+      { icon: "🏠", title: { ar: "المرافق الداخلية", en: "Indoor Facilities" }, items: [
+        { ar: "دورة مياه داخلية بمقعد كرسي", en: "Indoor restroom with a seated toilet" },
+        { ar: "صالة داخلية مقاس 7×4 م تتسع لـ 10 أشخاص كحد أقصى، مجهزة بسماعة كبيرة وإضاءة ليزر", en: "Indoor living room 7×4 m for up to 10 people, equipped with a large speaker and laser lighting" },
+        { ar: "غرفة نوم واحدة تحتوي على سرير مزدوج وخزانة ملابس صغيرة وتسريحة", en: "One bedroom with a double bed, a small wardrobe, and a dresser" },
+        { ar: "مطبخ مقاس 4×3 م يحتوي على طاولة طعام تتسع لـ 5 أشخاص، ثلاجة متوسطة الحجم، مايكروويف، غلاية ماء، وفرن كهربائي صغير", en: "Kitchen 4×3 m with a dining table for 5, a medium-size refrigerator, a microwave, an electric kettle, and a small electric oven" }
+      ]},
+      { icon: "📶", title: { ar: "خدمة الإنترنت", en: "Internet Service" }, items: [
+        { ar: "إنترنت مجاني", en: "Free Wi-Fi" }
+      ]}
+    ]
+  },
+  2: {
+    area: { ar: "المساحة: 200 متر مربع – يتسع حتى 20 شخص كحد أقصى", en: "Area: 200 sqm – Accommodates up to 20 guests maximum" },
+    groups: [
+      { icon: "🌿", title: { ar: "المميزات الخارجية", en: "Outdoor Features" }, items: [
+        { ar: "جلسة خارجية كبيرة تتسع لـ 10 أشخاص", en: "Spacious outdoor seating area for up to 10 people" },
+        { ar: "مسبح آمن للأطفال (4×5 م – عمق 0.5 م) مزوّد بألعاب مائية", en: "Child-safe swimming pool (4×5 m – 0.5 m depth) with water games" },
+        { ar: "مغاسل خارجية (عدد 2)", en: "Two outdoor sinks" },
+        { ar: "نظام ضباب متكامل في الحديقة لأجواء منعشة", en: "A complete misting (fog) system in the garden for a refreshing atmosphere" },
+        { ar: "ألعاب ترابية للأطفال", en: "Sand play area for kids" }
+      ]},
+      { icon: "🏠", title: { ar: "المرافق الداخلية", en: "Indoor Facilities" }, items: [
+        { ar: "صالتان واسعتان تتسعان لـ 30 شخص، مجهزتان بسماعات سقفية كبيرة وإضاءة ليزر وجهاز تعطير ذاتي", en: "Two large living rooms accommodating up to 30 people, equipped with built-in ceiling speakers, laser lighting, and an automatic fragrance diffuser" },
+        { ar: "دورتا مياه: واحدة بمقعد عربي وأخرى بمقعد كرسي", en: "Two restrooms: one with a squat toilet and one with a seated toilet" },
+        { ar: "مطبخ متكامل (4×3 م): طاولة طعام لـ 5 أشخاص، ثلاجة كبيرة، مايكروويف، غلاية ماء، فرن كهربائي صغير", en: "Fully equipped kitchen (4×3 m): dining table for 5, large refrigerator, microwave, electric kettle, small electric oven" }
+      ]},
+      { icon: "📶", title: { ar: "خدمة الإنترنت", en: "Internet Service" }, items: [
+        { ar: "إنترنت مجاني عالي السرعة", en: "Free high-speed Wi-Fi" }
+      ]}
+    ]
+  },
+  3: {
+    area: { ar: "المساحة: 200 متر مربع – يتسع حتى 15 شخص كحد أقصى", en: "Area: 200 sqm – Accommodates up to 15 guests maximum" },
+    groups: [
+      { icon: "🌿", title: { ar: "المميزات الخارجية", en: "Outdoor Features" }, items: [
+        { ar: "مجلس خارجي (مشب) 3×4 م يتسع لـ 6 أشخاص كحد أقصى، ويحتوي على مدخنة", en: "Outdoor majlis fire-pit seating, 3×4 m, for up to 6 people, with a chimney" },
+        { ar: "مسبح خارجي بسياج زجاجي، الطول 6 م والعرض 4 م، بعمق متدرج من 1 م إلى 3 م", en: "Outdoor swimming pool with a glass fence, 6×4 m, depth graduating from 1 m to 3 m" },
+        { ar: "دورة مياه خارجية بمقعد عربي", en: "Outdoor restroom with a squat toilet" },
+        { ar: "جلسة خارجية في الحديقة تتسع لـ 6 أشخاص كحد أقصى", en: "Outdoor garden seating for up to 6 people" },
+        { ar: "مغاسل خارجية (عدد 3)", en: "Three outdoor sinks" },
+        { ar: "نظام ضباب متكامل في الحديقة لأجواء منعشة", en: "A complete misting (fog) system in the garden for a refreshing atmosphere" }
+      ]},
+      { icon: "🏠", title: { ar: "المرافق الداخلية", en: "Indoor Facilities" }, items: [
+        { ar: "دورة مياه داخلية بمقعد كرسي", en: "Indoor restroom with a seated toilet" },
+        { ar: "صالة داخلية مقاس 7×4 م تتسع لـ 10 أشخاص كحد أقصى، مجهزة بسماعة كبيرة وإضاءة ليزر وجهاز تعطير ذاتي", en: "Indoor living room 7×4 m for up to 10 people, equipped with a large speaker, laser lighting, and an automatic fragrance diffuser" },
+        { ar: "غرفة نوم واحدة تحتوي على سرير مزدوج وخزانة ملابس صغيرة وتسريحة", en: "One bedroom with a double bed, a small wardrobe, and a dresser" },
+        { ar: "مطبخ مقاس 4×3 م يحتوي على طاولة طعام تتسع لـ 5 أشخاص، ثلاجة متوسطة الحجم، مايكروويف، غلاية ماء، وفرن كهربائي صغير", en: "Kitchen 4×3 m with a dining table for 5, a medium-size refrigerator, a microwave, an electric kettle, and a small electric oven" }
+      ]},
+      { icon: "📶", title: { ar: "خدمة الإنترنت", en: "Internet Service" }, items: [
+        { ar: "إنترنت مجاني", en: "Free Wi-Fi" }
+      ]}
+    ]
+  },
+  4: {
+    area: { ar: "المساحة: 200 متر مربع – يتسع حتى 15 شخص كحد أقصى", en: "Area: 200 sqm – Accommodates up to 15 guests maximum" },
+    groups: [
+      { icon: "🌿", title: { ar: "المميزات الخارجية", en: "Outdoor Features" }, items: [
+        { ar: "مجلس خارجي (مشب) 3×4 م يتسع لـ 6 أشخاص كحد أقصى، ويحتوي على مدخنة", en: "Outdoor majlis fire-pit seating, 3×4 m, for up to 6 people, with a chimney" },
+        { ar: "مسبح خارجي بسياج زجاجي، الطول 6 م والعرض 4 م، بعمق متدرج من 1 م إلى 3 م", en: "Outdoor swimming pool with a glass fence, 6×4 m, depth graduating from 1 m to 3 m" },
+        { ar: "دورة مياه خارجية بمقعد عربي", en: "Outdoor restroom with a squat toilet" },
+        { ar: "جلسة خارجية في الحديقة تتسع لـ 6 أشخاص كحد أقصى", en: "Outdoor garden seating for up to 6 people" },
+        { ar: "مغاسل خارجية (عدد 3)", en: "Three outdoor sinks" },
+        { ar: "نظام ضباب متكامل في الحديقة لأجواء منعشة", en: "A complete misting (fog) system in the garden for a refreshing atmosphere" }
+      ]},
+      { icon: "🏠", title: { ar: "المرافق الداخلية", en: "Indoor Facilities" }, items: [
+        { ar: "دورة مياه داخلية بمقعد كرسي", en: "Indoor restroom with a seated toilet" },
+        { ar: "صالة داخلية مقاس 7×4 م تتسع لـ 10 أشخاص كحد أقصى، مجهزة بسماعة كبيرة وإضاءة ليزر وجهاز تعطير ذاتي", en: "Indoor living room 7×4 m for up to 10 people, equipped with a large speaker, laser lighting, and an automatic fragrance diffuser" },
+        { ar: "غرفة نوم واحدة تحتوي على سرير مزدوج وخزانة ملابس صغيرة وتسريحة", en: "One bedroom with a double bed, a small wardrobe, and a dresser" },
+        { ar: "مطبخ مقاس 4×3 م يحتوي على طاولة طعام تتسع لـ 5 أشخاص، ثلاجة متوسطة الحجم، مايكروويف، غلاية ماء، وفرن كهربائي صغير", en: "Kitchen 4×3 m with a dining table for 5, a medium-size refrigerator, a microwave, an electric kettle, and a small electric oven" }
+      ]},
+      { icon: "📶", title: { ar: "خدمة الإنترنت", en: "Internet Service" }, items: [
+        { ar: "إنترنت مجاني", en: "Free Wi-Fi" }
+      ]}
+    ]
+  }
+};
+
+var currentModalChalet = null;
+
+function renderModalPrices(num, lang){
+  const prices = CHALET_PRICES[num];
+  if(!prices) return;
+  document.getElementById('modalPrices').innerHTML = PRICE_LABELS.map(l =>
+    `<div class="price-row"><span>${lang === 'en' ? l.en : l.ar}</span><b>${prices[l.key]} ${lang === 'en' ? 'SAR' : 'ريال'}</b></div>`
+  ).join('');
+}
+function renderModalTerms(lang){
+  const list = lang === 'en' ? TERMS_EN : TERMS_AR;
+  document.getElementById('modalTerms').innerHTML = list.map(t => `<li>${t}</li>`).join('');
+}
+function renderModalSpecs(num, lang){
+  const wrap = document.getElementById('modalSpecsWrap');
+  const spec = CHALET_SPECS[num];
+  if(!spec){ wrap.style.display = 'none'; return; }
+  wrap.style.display = '';
+  document.getElementById('modalSpecsArea').textContent = lang === 'en' ? spec.area.en : spec.area.ar;
+  document.getElementById('modalSpecsGroups').innerHTML = spec.groups.map(g => `
+    <div class="modal-specs-group">
+      <h5>${g.icon} ${lang === 'en' ? g.title.en : g.title.ar}</h5>
+      <ul>${g.items.map(it => `<li>${lang === 'en' ? it.en : it.ar}</li>`).join('')}</ul>
+    </div>
+  `).join('');
+}
+
+function openChaletModal(cardEl, num){
+  const overlay = document.getElementById('chaletModalOverlay');
+  const modal = document.getElementById('chaletModal');
+  const accent = cardEl.style.getPropertyValue('--accent');
+  modal.style.setProperty('--accent', accent);
+  document.getElementById('modalGallery').innerHTML = cardEl.querySelector('.chalet-gallery').innerHTML;
+  document.getElementById('modalHead').innerHTML = cardEl.querySelector('.chalet-head').innerHTML;
+  document.getElementById('modalFeats').innerHTML = cardEl.querySelector('.feat-list').innerHTML;
+  const lang = document.documentElement.lang;
+  renderModalSpecs(num, lang);
+  renderModalPrices(num, lang);
+  renderModalTerms(lang);
+  const sourceWa = cardEl.querySelector('.js-wa');
+  const modalBook = document.getElementById('modalBookBtn');
+  modalBook.setAttribute('data-msg', sourceWa.getAttribute('data-msg') || '');
+  modalBook.setAttribute('data-msg-en', sourceWa.getAttribute('data-msg-en') || '');
+  updateWaLinks(lang);
+  currentModalChalet = num;
+  overlay.classList.add('open');
+  document.body.classList.add('modal-open');
+}
+function closeChaletModal(){
+  document.getElementById('chaletModalOverlay').classList.remove('open');
+  document.body.classList.remove('modal-open');
+  currentModalChalet = null;
+}
+document.querySelectorAll('.chalet-details-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    openChaletModal(btn.closest('.chalet-card'), Number(btn.getAttribute('data-chalet')));
+  });
+});
+document.getElementById('chaletModalClose').addEventListener('click', closeChaletModal);
+document.getElementById('chaletModalOverlay').addEventListener('click', (e)=>{
+  if(e.target.id === 'chaletModalOverlay') closeChaletModal();
+});
+
+// يضيف بلاطة "جولة فيديو" داخل معرض صور أي شاليه عنده فيديو بكائن CHALET_VIDEOS أعلاه —
+// تلقائياً بمجرد إضافة رقم الشاليه هناك، بدون لمس أي HTML يدوياً
+function injectGalleryVideos(){
+  document.querySelectorAll('.chalet-details-btn').forEach(btn=>{
+    const num = Number(btn.getAttribute('data-chalet'));
+    const video = CHALET_VIDEOS[num];
+    if(!video) return;
+    const card = btn.closest('.chalet-card');
+    const thumbs = card && card.querySelector('.gallery-thumbs');
+    if(!thumbs || thumbs.querySelector('.gallery-thumb-video')) return;
+    const tile = document.createElement('div');
+    tile.className = 'gallery-thumb-video';
+    tile.setAttribute('onclick', `openVideoLightbox('${video.id}', ${!!video.vertical})`);
+    tile.innerHTML = '<div class="video-thumb-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div><small data-i18n="gal_video_tour">جولة فيديو</small>';
+    thumbs.appendChild(tile);
+  });
+}
+injectGalleryVideos();
+
+let lbImages = [];
+let lbIndex = 0;
+function openLightbox(el){
+  const gallery = el.closest('.chalet-gallery, .chalet-modal-gallery');
+  if(gallery){
+    lbImages = Array.from(gallery.querySelectorAll('.gallery-main img, .gallery-thumbs img')).map(img => img.src);
+    lbIndex = lbImages.indexOf(el.src);
+    if(lbIndex === -1) lbIndex = 0;
+  } else {
+    lbImages = [el.src];
+    lbIndex = 0;
+  }
+  showLightboxImage();
+  document.getElementById('imgLightbox').classList.add('open');
+  document.body.classList.add('modal-open');
+}
+function showLightboxImage(){
+  document.getElementById('lightboxImg').src = lbImages[lbIndex];
+  const multi = lbImages.length > 1;
+  document.getElementById('lbPrev').style.display = multi ? 'flex' : 'none';
+  document.getElementById('lbNext').style.display = multi ? 'flex' : 'none';
+  const counter = document.getElementById('lbCounter');
+  if(multi){
+    counter.textContent = (lbIndex + 1) + ' / ' + lbImages.length;
+    counter.style.display = 'block';
+  } else {
+    counter.style.display = 'none';
+  }
+}
+function lbGoPrev(){
+  if(lbImages.length < 2) return;
+  lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length;
+  showLightboxImage();
+}
+function lbGoNext(){
+  if(lbImages.length < 2) return;
+  lbIndex = (lbIndex + 1) % lbImages.length;
+  showLightboxImage();
+}
+function closeLightbox(){
+  document.getElementById('imgLightbox').classList.remove('open');
+  document.getElementById('lightboxImg').src = '';
+  lbImages = []; lbIndex = 0;
+  if(!document.getElementById('chaletModalOverlay').classList.contains('open')){
+    document.body.classList.remove('modal-open');
+  }
+}
+document.getElementById('lbClose').addEventListener('click', closeLightbox);
+document.getElementById('lbPrev').addEventListener('click', (e)=>{ e.stopPropagation(); lbGoPrev(); });
+document.getElementById('lbNext').addEventListener('click', (e)=>{ e.stopPropagation(); lbGoNext(); });
+document.getElementById('imgLightbox').addEventListener('click', (e)=>{
+  if(e.target.id === 'imgLightbox') closeLightbox();
+});
+document.addEventListener('keydown', (e)=>{
+  if(document.getElementById('imgLightbox').classList.contains('open')){
+    if(e.key === 'Escape') closeLightbox();
+    else if(e.key === 'ArrowLeft') lbGoPrev();
+    else if(e.key === 'ArrowRight') lbGoNext();
+  } else if(document.getElementById('videoLightbox').classList.contains('open')){
+    if(e.key === 'Escape') closeVideoLightbox();
+  } else if(e.key === 'Escape'){
+    closeChaletModal();
+  }
+});
+
+function openVideoLightbox(vid, vertical){
+  const frame = document.getElementById('videoLightboxFrame');
+  frame.classList.toggle('vertical', !!vertical);
+  frame.innerHTML = `<iframe src="https://www.youtube.com/embed/${vid}" title="Chalet video tour" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+  document.getElementById('videoLightbox').classList.add('open');
+  document.body.classList.add('modal-open');
+}
+function closeVideoLightbox(){
+  document.getElementById('videoLightbox').classList.remove('open');
+  document.getElementById('videoLightboxFrame').innerHTML = '';
+  if(!document.getElementById('chaletModalOverlay').classList.contains('open')){
+    document.body.classList.remove('modal-open');
+  }
+}
+document.getElementById('vlbClose').addEventListener('click', closeVideoLightbox);
+document.getElementById('videoLightbox').addEventListener('click', (e)=>{
+  if(e.target.id === 'videoLightbox') closeVideoLightbox();
+});
+
+/* ===== خلفية الهيدر المتحركة (صور الرياض) ===== */
+(function initHeroSlider(){
+  const slidesWrap = document.getElementById('heroSlides');
+  const dotsWrap = document.getElementById('heroDots');
+  const captionEl = document.getElementById('heroCaption');
+  const camIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 15l-5-4-4 3-3-2-6 5"/></svg>';
+  let slideCount;
+
+  if (CONFIG.heroPhotos && CONFIG.heroPhotos.length){
+    slideCount = CONFIG.heroPhotos.length;
+    CONFIG.heroPhotos.forEach(item=>{
+      const d = document.createElement('div');
+      d.className = 'hero-slide';
+      d.style.backgroundImage = `url('${item.url}')`;
+      d.dataset.titleAr = item.title || '';
+      d.dataset.subtitleAr = item.subtitle || '';
+      d.dataset.titleEn = item.titleEn || item.title || '';
+      d.dataset.subtitleEn = item.subtitleEn || item.subtitle || '';
+      slidesWrap.appendChild(d);
+    });
+  } else {
+    // وضع تجريبي: بدّل CONFIG.heroPhotos بروابط صور حقيقية وجميلة لمدينة الرياض لتفعيل الخلفية المتحركة
+    const labels = ['أضف صورة ١ لمدينة الرياض هنا', 'أضف صورة ٢ لمدينة الرياض هنا', 'أضف صورة ٣ لمدينة الرياض هنا'];
+    slideCount = labels.length;
+    labels.forEach((label,i)=>{
+      const d = document.createElement('div');
+      d.className = `hero-slide placeholder grad-${i+1}`;
+      d.innerHTML = `${camIcon}<span>${label}</span>`;
+      d.dataset.titleAr = ''; d.dataset.subtitleAr = '';
+      d.dataset.titleEn = ''; d.dataset.subtitleEn = '';
+      slidesWrap.appendChild(d);
+    });
+  }
+
+  const slideEls = Array.from(slidesWrap.children);
+  slideEls.forEach((el,i)=>{
+    const b = document.createElement('button');
+    b.setAttribute('aria-label', `صورة ${i+1}`);
+    b.addEventListener('click', ()=> goTo(i));
+    dotsWrap.appendChild(b);
+  });
+  const dotEls = Array.from(dotsWrap.children);
+
+  let current = 0, timer;
+  function render(){
+    slideEls.forEach((el,i)=> el.classList.toggle('active', i===current));
+    dotEls.forEach((d,i)=> d.classList.toggle('active', i===current));
+    const lang = document.documentElement.lang === 'en' ? 'en' : 'ar';
+    const activeSlide = slideEls[current];
+    const title = activeSlide ? (lang === 'en' ? activeSlide.dataset.titleEn : activeSlide.dataset.titleAr) : '';
+    const subtitle = activeSlide ? (lang === 'en' ? activeSlide.dataset.subtitleEn : activeSlide.dataset.subtitleAr) : '';
+    if (title){
+      captionEl.innerHTML = `<span class="cap-title">${title}</span><span class="cap-sub">${subtitle}</span>`;
+      captionEl.classList.add('show');
+    } else {
+      captionEl.classList.remove('show');
+    }
+  }
+  function goTo(i){
+    current = i % slideCount;
+    render();
+    resetTimer();
+  }
+  function next(){ goTo((current+1) % slideCount); }
+  function resetTimer(){ clearInterval(timer); timer = setInterval(next, 6000); }
+
+  window.refreshHeroCaption = render;
+  render();
+  resetTimer();
+})();
+
+if (CONFIG.email) {
+  const emailLi = document.getElementById('emailLi');
+  emailLi.querySelector('a').href = `mailto:${CONFIG.email}`;
+  emailLi.querySelector('span').textContent = CONFIG.email;
+  emailLi.style.display = '';
+}
+
+const socialMeta = {
+  instagram: {label:'انستقرام', path:'M12 2c2.7 0 3 .01 4.1.06 1.1.05 1.8.22 2.5.47.7.27 1.2.6 1.8 1.16.5.5.9 1.1 1.16 1.8.25.7.42 1.4.47 2.5.05 1.1.06 1.4.06 4.1s-.01 3-.06 4.1c-.05 1.1-.22 1.8-.47 2.5-.27.7-.6 1.2-1.16 1.8-.5.5-1.1.9-1.8 1.16-.7.25-1.4.42-2.5.47-1.1.05-1.4.06-4.1.06s-3-.01-4.1-.06c-1.1-.05-1.8-.22-2.5-.47-.7-.27-1.2-.6-1.8-1.16-.5-.5-.9-1.1-1.16-1.8-.25-.7-.42-1.4-.47-2.5C2 15 2 14.7 2 12s.01-3 .06-4.1c.05-1.1.22-1.8.47-2.5.27-.7.6-1.2 1.16-1.8.5-.5 1.1-.9 1.8-1.16.7-.25 1.4-.42 2.5-.47C9 2 9.3 2 12 2zm0 5a5 5 0 100 10 5 5 0 000-10zm0 8.2a3.2 3.2 0 110-6.4 3.2 3.2 0 010 6.4zm5.4-8.4a1.2 1.2 0 100-2.4 1.2 1.2 0 000 2.4z'},
+  snapchat: {label:'سناب شات', path:'M12 2c3 0 4.4 2.3 4.5 4.7.03.6 0 1.5-.03 2.1.5.1 1 .3 1.2.6.2.4-.1.8-.5 1-.3.2-.8.4-.8.7 0 .5.9 1.6 2.5 2-.1.5-.9.8-1.8 1-.2.6-.3 1-.9 1-.5 0-.9-.2-1.6-.2-.9 0-1.5.7-2.5.7s-1.6-.7-2.5-.7c-.7 0-1.1.2-1.6.2-.6 0-.7-.4-.9-1-.9-.2-1.7-.5-1.8-1 1.6-.4 2.5-1.5 2.5-2 0-.3-.5-.5-.8-.7-.4-.2-.7-.6-.5-1 .2-.3.7-.5 1.2-.6-.03-.6-.06-1.5-.03-2.1C7.6 4.3 9 2 12 2z'},
+  airbnb: {label:'Airbnb', path:'M12 2c.6 0 1.1.3 1.4.9 1.7 3.2 5.6 8.9 5.6 12a7 7 0 01-14 0c0-3.1 3.9-8.8 5.6-12 .3-.6.8-.9 1.4-.9zm0 4.6c-1.3 2.2-3.6 6-3.6 7.4a3.6 3.6 0 007.2 0c0-1.4-2.3-5.2-3.6-7.4z'},
+  gathern: {label:'قاثرن', path:'M4 10l8-6 8 6v9a1 1 0 01-1 1h-4v-6H9v6H5a1 1 0 01-1-1v-9z'},
+  tiktok: {label:'تيك توك', path:'M12.53.02C13.84 0 15.14.01 16.44.02c.08 1.53.61 3.09 1.75 4.17 1.15 1.09 2.76 1.53 4.28 1.53v4.34c-1.45.05-2.94-.32-4.28-.94-.68-.31-1.34-.7-1.94-1.15v8.31c0 4.16-3.33 7.62-7.53 7.62-2.29 0-4.4-.92-5.87-2.44-1.42-1.47-2.28-3.47-2.28-5.63 0-4.16 3.32-7.61 7.53-7.61.4 0 .8.03 1.19.09v4.44c-.38-.11-.79-.17-1.19-.17-1.86 0-3.37 1.5-3.37 3.35s1.51 3.35 3.37 3.35c1.86 0 3.5-1.46 3.5-3.31L12.53.02z'},
+  salla: {label:'المتجر', path:'M6 7h12l1 4v9a1 1 0 01-1 1H6a1 1 0 01-1-1v-9l1-4zm2 4a4 4 0 008 0'}
+};
+const socialWrap = document.getElementById('socialLinks');
+Object.entries(CONFIG.social).forEach(([key,url])=>{
+  if(!url) return;
+  const meta = socialMeta[key];
+  if(!meta) return;
+  const a = document.createElement('a');
+  a.href = url; a.target = "_blank"; a.rel = "noopener"; a.title = meta.label;
+  a.className = "social-ico";
+  a.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="${meta.path}"/></svg>`;
+  socialWrap.appendChild(a);
+});
+if(!socialWrap.children.length) socialWrap.style.display = 'none';
+
+function updateWaLinks(lang){
+  document.querySelectorAll('.js-wa').forEach(el=>{
+    const raw = (lang === 'en' && el.getAttribute('data-msg-en')) ? el.getAttribute('data-msg-en') : (el.getAttribute('data-msg') || '');
+    const msg = encodeURIComponent(raw);
+    el.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${msg}`;
+    el.target = "_blank";
+    el.rel = "noopener";
+  });
+}
+updateWaLinks('ar');
+
+// Header scroll state
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', ()=>{
+  header.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Mobile menu
+const burger = document.getElementById('burgerBtn');
+const menu = document.getElementById('mobileMenu');
+const closeMenu = document.getElementById('closeMenu');
+burger.addEventListener('click', ()=> menu.classList.add('open'));
+closeMenu.addEventListener('click', ()=> menu.classList.remove('open'));
+menu.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> menu.classList.remove('open')));
+
+// Reveal on scroll
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){ entry.target.classList.add('visible'); }
+  });
+}, {threshold:0.15});
+document.querySelectorAll('.reveal, .chalet-card').forEach(el=> observer.observe(el));
+
+/* =========================================================
+   تبديل اللغة (عربي / إنجليزي)
+   ========================================================= */
+const I18N = {
+  ar: {
+    brand: "شاليهات الثانية",
+    nav_chalets: "الشاليهات", nav_video: "جولة فيديو", nav_location: "الموقع", nav_contact: "تواصل معنا", nav_store: "🛍️ المتجر",
+    btn_book_now: "احجز الآن", btn_book_wa_long: "احجز عبر واتساب", btn_browse_chalets: "تصفّح الشاليهات",
+    aria_menu: "القائمة", aria_wa: "تواصل واتساب", aria_close_modal: "إغلاق",
+    modal_prices_title: "💰 الأسعار", modal_terms_title: "📋 تعليمات الوصول والحجز — يرجى القراءة جيداً قبل الحجز",
+    modal_specs_title: "📋 المواصفات الكاملة",
+    hero_eyebrow: "شاليهات الثانية · أربع وحدات فاخرة",
+    hero_h1: "راحتك واستراحتك <em>تبدأ من هنا</em>",
+    hero_lead: "استمتع بإقامة هادئة بخصوصية تامة، تجهيزات كاملة، وإطلالة تنسيك زحمة اليوم — احجز شاليهك المفضل بضغطة واحدة عبر واتساب.",
+    stat1: "<b>٤</b><span>وحدات مستقلة</span>",
+    stat2: "<b>١٠٠٪</b><span>خصوصية تامة</span>",
+    stat3: "<b>٢٤/٧</b><span>رد سريع على واتساب</span>",
+    gal_general: "صورة عامة للمجمع", gal_outdoor: "الجلسة الخارجية", gal_pool: "المسبح",
+    intro_eyebrow: "لمحة عن المكان",
+    intro_title: "تجربة استراحة متكاملة لعائلتك وضيوفك",
+    intro_sub: "صممنا شاليهات الثانية لتكون وجهتك المفضلة لقضاء وقت هادئ بعيداً عن صخب المدينة — كل وحدة مجهزة بالكامل ومستقلة تماماً عن الأخرى، مع اهتمام خاص بالنظافة والراحة من أول لحظة دخول.",
+    feat_pool_all: "🏊 مسبح خاص لكل وحدة", feat_ac: "❄️ تكييف سبليت",
+    feat_bedrooms: "🛏️ غرف نوم مجهزة بالكامل", feat_bathrooms: "🚿 دورات مياه متكاملة ومجهزة بكل الأدوات اللازمة",
+    feat_wifi_fast: "📶 واي فاي عالي السرعة",
+    feat_parking: "🚗 موقف سيارات خاص", feat_mist: "🌫️ نظام ضباب خارجي للحديقة", feat_kitchen: "🍳 مطبخ مجهز بالكامل",
+    feat_bbq: "🔥 شواية خارجية", feat_speakers: "🎵 سماعات سقفية للأغاني", feat_laser: "🎇 إضاءة ليزر للحفلات",
+    feat_freshener: "🌸 أجهزة تعطير داخلية",
+    why_eyebrow: "تجربة الضيافة", why_title: "ليش تختار شاليهات الثانية",
+    why1_title: "خصوصية تامة", why1_desc: "كل وحدة مستقلة بالكامل بمدخل ومسبح خاص — بلا أي مشاركة مع باقي الشاليهات.",
+    why2_title: "تجهيزات كاملة", why2_desc: "تكييف، مطبخ، واي فاي، وكل ما تحتاجه لإقامة مريحة بلا أي تحضير مسبق.",
+    why3_title: "رد فوري على واتساب", why3_desc: "تواصل معنا بأي وقت — نرد عليك ونأكد حجزك بأسرع وقت ممكن.",
+    why4_title: "احجز مباشر ووفر", why4_desc: "لا عمولات ولا وسيط — الحجز المباشر معنا عبر واتساب دايماً أوفر لك من منصات الحجز الخارجية.",
+    chalets_eyebrow: "تفاصيل الشاليهات", chalets_title: "اختر شاليهك",
+    chalets_sub: 'أربع وحدات مستقلة، كل وحدة بمميزاتها الخاصة — اضغط "احجز عبر واتساب" وسيصلنا رقم الشاليه تلقائياً.',
+    gal_main: "الصورة الرئيسية", gal_2: "صورة ٢", gal_3: "صورة ٣", gal_4: "صورة ٤", gal_video_tour: "جولة فيديو",
+    chalet1_name: "شاليه ١", chalet1_cap: "حتى ١٥ شخص",
+    chalet2_name: "شاليه ٢", chalet2_cap: "حتى ٢٠ شخص",
+    chalet3_name: "شاليه ٣", chalet3_cap: "حتى ١٥ شخص",
+    chalet4_name: "شاليه ٤", chalet4_cap: "حتى ١٥ شخص",
+    feat_pool: "مسبح خاص", feat_ac_short: "تكييف سبليت", feat_wifi: "واي فاي",
+    feat_kitchen_full: "مطبخ مجهز بالكامل", feat_playground: "ملعب صغير", feat_water_play: "ألعاب مائية للأطفال",
+    btn_book_wa_short: "احجز واتساب",
+    btn_details: "📋 التفاصيل والأسعار",
+    btn_view_calendar: "📅 شوف التواريخ المتاحة",
+    video_eyebrow: "جولة مصوّرة", video_title: "شوف الشاليهات قبل ما توصل",
+    video_sub: "مقاطع فيديو قصيرة تعطيك فكرة كاملة عن المكان والتجهيزات.",
+    video1_label: "جولة عامة على المجمع", video2_label: "المسبح والجلسة الخارجية",
+    testi_eyebrow: "آراء عملائنا", testi_title: "وش يقول ضيوفنا", testi_sub: "تجارب حقيقية من عملاء سبق واستضفناهم.", testi_google_count: "بناءً على 433 تقييم على خرائط قوقل",
+    loc_eyebrow: "كيف توصل", loc_title: "موقع شاليهات الثانية",
+    loc_addr_title: "العنوان",
+    loc_hours_title: "مواعيد الدخول والخروج", loc_hours_desc: "الدخول الساعة ٢ ظهراً — الخروج الساعة ٤ فجراً من اليوم التالي",
+    loc_access_title: "سهولة الوصول", loc_access_desc: "مواقف سيارات مخصصة قريبة من كل وحدة",
+    btn_directions: "الاتجاهات على خرائط قوقل",
+    faq_eyebrow: "قبل ما تحجز", faq_title: "أسئلة شائعة",
+    faq1_q: "هل فيه إمكانية إلغاء أو تعديل الحجز؟",
+    faq1_a: "يُسمح بإلغاء الحجز قبل 48 ساعة من موعد الدخول. الإلغاء خلال هذه الفترة (أقل من 48 ساعة) يترتب عليه خصم مبلغ العربون.",
+    faq2_q: "هل التدخين مسموح داخل الشاليه؟",
+    faq2_a: "التدخين غير مسموح داخل الوحدات حفاظاً على نظافتها لبقية الضيوف، ومسموح بالمناطق الخارجية.",
+    faq3_q: "هل يسمح باصطحاب حيوانات أليفة؟",
+    faq3_a: "يرجى التواصل معنا مسبقاً عبر واتساب لو ناوي تصطحب حيوان أليف حتى نأكد لك إمكانية ذلك.",
+    faq4_q: "هل فيه عربون أو مبلغ تأمين؟",
+    faq4_a: "نعم، مبلغ التأمين 300 ريال، ويُسترد بنفس طريقة الدفع (كاش أو تحويل بنكي) خلال 48 ساعة من وقت الخروج — بشرط سلامة الوحدة ومحتوياتها وعدم التأخر عن وقت الخروج.",
+    faq5_q: "كم أقل عدد ليالي للحجز؟",
+    faq5_a: "الحجز متاح لليلة واحدة فأكثر، وتختلف الأولوية بأيام نهاية الأسبوع — تواصل معنا لمعرفة التوفر الحالي.",
+    cta_title: "جاهز تحجز استراحتك القادمة؟", cta_desc: "راسلنا الحين على واتساب ونرد عليك بأسرع وقت",
+    btn_contact_now: "تواصل معنا الآن",
+    pay_label: "💳 نقبل جميع وسائل الدفع", pay_transfer: "تحويل بنكي", pay_cash: "الدفع كاش",
+    footer_tagline: "وجهتك المفضلة لاستراحة هادئة بخصوصية تامة وتجهيزات كاملة لعائلتك وضيوفك.",
+    footer_quicklinks: "روابط سريعة", footer_link_chalets: "الشاليهات والأسعار",
+    footer_wa_label: "📱 واتساب: ", footer_reply_time: "🕐 الرد متاح يومياً",
+    footer_copyright: "شاليهات الثانية — جميع الحقوق محفوظة",
+    mobilebar: "حجز سريع وسهل<small>عبر واتساب مباشرة</small>"
+  },
+  en: {
+    brand: "Althaniya Chalets",
+    nav_chalets: "Chalets", nav_video: "Video Tour", nav_location: "Location", nav_contact: "Contact Us", nav_store: "🛍️ Store",
+    btn_book_now: "Book Now", btn_book_wa_long: "Book via WhatsApp", btn_browse_chalets: "Browse Chalets",
+    aria_menu: "Menu", aria_wa: "Contact WhatsApp", aria_close_modal: "Close",
+    modal_prices_title: "💰 Pricing", modal_terms_title: "📋 Access & booking instructions — please read carefully before booking",
+    modal_specs_title: "📋 Full Specifications",
+    hero_eyebrow: "Althaniya Chalets · Four Luxury Units",
+    hero_h1: "Your comfort <em>starts here</em>",
+    hero_lead: "Enjoy a peaceful stay with total privacy, full amenities, and a view that makes you forget the busy day — book your favorite chalet in one tap on WhatsApp.",
+    stat1: "<b>4</b><span>Independent units</span>",
+    stat2: "<b>100%</b><span>Total privacy</span>",
+    stat3: "<b>24/7</b><span>Fast WhatsApp reply</span>",
+    gal_general: "General view of the complex", gal_outdoor: "Outdoor seating area", gal_pool: "The pool",
+    intro_eyebrow: "About the place",
+    intro_title: "A complete getaway experience for your family and guests",
+    intro_sub: "We designed Althaniya Chalets to be your favorite destination for a quiet time away from the city's hustle — every unit is fully equipped and completely independent from the others, with special attention to cleanliness and comfort from the moment you arrive.",
+    feat_pool_all: "🏊 Private pool for every unit", feat_ac: "❄️ Split air conditioning",
+    feat_bedrooms: "🛏️ Fully furnished bedrooms", feat_bathrooms: "🚿 Complete bathrooms fully equipped with everything needed",
+    feat_wifi_fast: "📶 High-speed WiFi",
+    feat_parking: "🚗 Private parking", feat_mist: "🌫️ Outdoor garden misting system", feat_kitchen: "🍳 Fully equipped kitchen",
+    feat_bbq: "🔥 Outdoor BBQ grill", feat_speakers: "🎵 Ceiling speakers for music", feat_laser: "🎇 Party laser lighting",
+    feat_freshener: "🌸 Indoor air fresheners",
+    why_eyebrow: "The hospitality experience", why_title: "Why choose Althaniya Chalets",
+    why1_title: "Total privacy", why1_desc: "Every unit is fully independent with its own entrance and private pool — no sharing with the other chalets.",
+    why2_title: "Full amenities", why2_desc: "AC, kitchen, WiFi, and everything you need for a comfortable stay with no prior preparation.",
+    why3_title: "Instant WhatsApp reply", why3_desc: "Reach us anytime — we'll reply and confirm your booking as fast as possible.",
+    why4_title: "Book direct & save", why4_desc: "No commissions, no middleman — booking with us directly on WhatsApp is always cheaper than external booking platforms.",
+    chalets_eyebrow: "Chalet Details", chalets_title: "Choose your chalet",
+    chalets_sub: 'Four independent units, each with its own features — tap "Book via WhatsApp" and the chalet number reaches us automatically.',
+    gal_main: "Main photo", gal_2: "Photo 2", gal_3: "Photo 3", gal_4: "Photo 4", gal_video_tour: "Video tour",
+    chalet1_name: "Chalet 1", chalet1_cap: "Up to 15 guests",
+    chalet2_name: "Chalet 2", chalet2_cap: "Up to 20 guests",
+    chalet3_name: "Chalet 3", chalet3_cap: "Up to 15 guests",
+    chalet4_name: "Chalet 4", chalet4_cap: "Up to 15 guests",
+    feat_pool: "Private pool", feat_ac_short: "Split AC", feat_wifi: "WiFi",
+    feat_kitchen_full: "Fully equipped kitchen", feat_playground: "Small playground", feat_water_play: "Kids water play area",
+    btn_book_wa_short: "Book on WhatsApp",
+    btn_details: "📋 Details & pricing",
+    btn_view_calendar: "📅 Check availability",
+    video_eyebrow: "Video Tour", video_title: "See the chalets before you arrive",
+    video_sub: "Short video clips that give you a complete idea of the place and its amenities.",
+    video1_label: "General tour of the complex", video2_label: "The pool and outdoor seating",
+    testi_eyebrow: "Guest reviews", testi_title: "What our guests say", testi_sub: "Real experiences from guests we’ve hosted before.", testi_google_count: "Based on 433 reviews on Google Maps",
+    loc_eyebrow: "How to get there", loc_title: "Althaniya Chalets location",
+    loc_addr_title: "Address",
+    loc_hours_title: "Check-in & check-out", loc_hours_desc: "Check-in at 2 PM — check-out at 4 AM the following day",
+    loc_access_title: "Easy access", loc_access_desc: "Dedicated parking spots close to every unit",
+    btn_directions: "Get directions on Google Maps",
+    faq_eyebrow: "Before you book", faq_title: "Frequently asked questions",
+    faq1_q: "Can I cancel or change my booking?",
+    faq1_a: "Cancellation is allowed up to 48 hours before check-in. Cancelling within that window (less than 48 hours) forfeits the deposit.",
+    faq2_q: "Is smoking allowed inside the chalet?",
+    faq2_a: "Smoking is not allowed inside the units to keep them clean for other guests, but it’s allowed in the outdoor areas.",
+    faq3_q: "Are pets allowed?",
+    faq3_a: "Please contact us on WhatsApp beforehand if you plan to bring a pet so we can confirm it’s possible.",
+    faq4_q: "Is there a deposit or security fee?",
+    faq4_a: "Yes, a 300 SAR security deposit is required. It’s refunded using the same payment method (cash or bank transfer) within 48 hours of check-out, provided the unit and its contents are undamaged and check-out wasn’t late.",
+    faq5_q: "What’s the minimum number of nights?",
+    faq5_a: "Bookings start from one night, with weekends usually in higher demand — message us to check current availability.",
+    cta_title: "Ready to book your next getaway?", cta_desc: "Message us now on WhatsApp and we'll reply as fast as possible",
+    btn_contact_now: "Contact us now",
+    pay_label: "💳 We accept all payment methods", pay_transfer: "Bank transfer", pay_cash: "Cash",
+    footer_tagline: "Your favorite destination for a quiet getaway with total privacy and full amenities for your family and guests.",
+    footer_quicklinks: "Quick links", footer_link_chalets: "Chalets & prices",
+    footer_wa_label: "📱 WhatsApp: ", footer_reply_time: "🕐 Replies available daily",
+    footer_copyright: "Althaniya Chalets — All rights reserved",
+    mobilebar: "Quick & easy booking<small>Directly via WhatsApp</small>"
+  }
+};
+
+function setLang(lang){
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if (I18N[lang][key] !== undefined) el.innerHTML = I18N[lang][key];
+  });
+  document.querySelectorAll('[data-i18n-aria]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-aria');
+    if (I18N[lang][key] !== undefined) el.setAttribute('aria-label', I18N[lang][key]);
+  });
+  document.getElementById('addrText').textContent = lang === 'en' ? (CONFIG.addressEn || CONFIG.address) : CONFIG.address;
+  if (typeof window.refreshHeroCaption === 'function') window.refreshHeroCaption();
+  if (typeof window.renderTestimonials === 'function') window.renderTestimonials(lang);
+  if (typeof window.currentModalChalet !== 'undefined' && window.currentModalChalet) {
+    renderModalSpecs(window.currentModalChalet, lang);
+    renderModalPrices(window.currentModalChalet, lang);
+    renderModalTerms(lang);
+  }
+  const langLabel = lang === 'en' ? 'عربي' : 'EN';
+  document.getElementById('langToggle').textContent = langLabel;
+  updateWaLinks(lang);
+  try{ localStorage.setItem('althaniya_lang', lang); }catch(e){}
+}
+
+let savedLang = 'ar';
+try{ savedLang = localStorage.getItem('althaniya_lang') || 'ar'; }catch(e){}
+setLang(savedLang);
+
+function toggleLang(){
+  setLang(document.documentElement.lang === 'ar' ? 'en' : 'ar');
+}
+document.getElementById('langToggle').addEventListener('click', toggleLang);
+
+/* ===== الوضع الليلي / النهاري ===== */
+function setTheme(theme){
+  document.documentElement.setAttribute('data-theme', theme);
+  const isEn = document.documentElement.lang === 'en';
+  const icon = theme === 'dark' ? '☀️' : '🌙';
+  const label = theme === 'dark'
+    ? (isEn ? 'Switch to light mode' : 'التبديل للوضع النهاري')
+    : (isEn ? 'Switch to dark mode' : 'التبديل للوضع الليلي');
+  document.getElementById('themeToggle').textContent = icon;
+  document.getElementById('themeToggle').setAttribute('aria-label', label);
+  try{ localStorage.setItem('althaniya_theme', theme); }catch(e){}
+}
+
+let savedTheme = 'light';
+try{
+  savedTheme = localStorage.getItem('althaniya_theme') ||
+    ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light');
+}catch(e){}
+setTheme(savedTheme);
+
+function toggleTheme(){
+  setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+}
+document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+</script>
+</body>
+</html>
